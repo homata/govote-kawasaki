@@ -83,48 +83,38 @@ const Content = (props: Props) => {
 
       mapObject.addLayer({
         id: 'shop-points',
-        type: 'circle',
+        type: 'symbol',
         source: 'shops',
         filter: ['==', "カテゴリ", "センキョ割実施店舗"],
-        paint: {
-          'circle-radius': 13,
-          //'circle-color': '#D47051',
-          'circle-color': '#FF0000',
-          'circle-opacity': 0.8,
-          'circle-stroke-width': 2,
-          'circle-stroke-color': '#FFFFFF',
-          'circle-stroke-opacity': 1,
-        },
+        layout: {
+          'icon-image': 'commercial',
+          'icon-overlap': 'always',
+          'icon-size': 1.5
+        }
       })
 
       mapObject.addLayer({
         id: 'voting-points',
-        type: 'circle',
+        type: 'symbol',
         source: 'shops',
         filter: ['==', "カテゴリ", "期日前投票所"],
-        paint: {
-          'circle-radius': 13,
-          'circle-color': '#00FF00',
-          'circle-opacity': 0.8,
-          'circle-stroke-width': 2,
-          'circle-stroke-color': '#FFFFFF',
-          'circle-stroke-opacity': 1,
-        },
+        layout: {
+          'icon-image': 'town_hall',
+          'icon-overlap': 'always',
+          'icon-size': 1.5
+        }
       })
 
       mapObject.addLayer({
         id: 'poster-points',
-        type: 'circle',
+        type: 'symbol',
         source: 'shops',
         filter: ['==', "カテゴリ", "ポスター掲示場設置場所"],
-        paint: {
-          'circle-radius': 13,
-          'circle-color': '#0000FF',
-          'circle-opacity': 0.8,
-          'circle-stroke-width': 2,
-          'circle-stroke-color': '#FFFFFF',
-          'circle-stroke-opacity': 1,
-        },
+        layout: {
+          'icon-image': 'monument',
+          'icon-overlap': 'always',
+          'icon-size': 1.5
+        }
       })
 
       mapObject.addLayer({
