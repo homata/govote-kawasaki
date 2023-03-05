@@ -90,8 +90,8 @@ const Content = (props: Props) => {
         ],
         paint: {
           'circle-radius': 13,
-          'circle-color': '#FF0000',
-          'circle-opacity': 0.4,
+          'circle-color': '#D47051',
+          'circle-opacity': 0.8,
           'circle-stroke-width': 2,
           'circle-stroke-color': '#FFFFFF',
           'circle-stroke-opacity': 1,
