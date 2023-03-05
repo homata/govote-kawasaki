@@ -6,7 +6,7 @@ import config from './config.json'
 
 const Content = () => {
 
-  const logoUrl = config.logo_image_url || `${process.env.PUBLIC_URL}/logo.svg`
+  const logoUrl = config.logo_image_url || `${process.env.PUBLIC_URL}/assets/logo.png`
 
   return (
     <div className="about">
