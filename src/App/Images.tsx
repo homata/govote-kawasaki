@@ -58,7 +58,9 @@ const Content = (props: Props) => {
 
   return (
     <>
-      <div className="head"></div>
+      <div className="head">
+        <span className="head_text">センキョ割実施店舗</span>
+      </div>
       <div className="images">
         <div className="container">
           <ImageList id="mui-image-list" sx={{ width: "100%", height: "100%" }} cols={2} rowHeight={164}>
