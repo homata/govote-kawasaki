@@ -40,7 +40,7 @@ const Content = () => {
 
         <h2>About Geolonia PWAマップ</h2>
         <p>
-          このアプリは、株式会社 Geoloniaの<a href="https://github.com/geoloniamaps/pwamap" target='_blank' rel="noreferrer">Geolonia PWAマップ</a> を使用して作成されています。
+          このアプリは、株式会社Geoloniaの「<a href="https://github.com/geoloniamaps/pwamap" target='_blank' rel="noreferrer">Geolonia PWAマップ</a>」を使用して作成されています。
         </p>
 
       </div>
