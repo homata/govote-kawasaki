@@ -79,6 +79,12 @@ const Content = (props: Props) => {
             <div style={{margin: "24px 0"}}><Links data={shop} /></div>
 
             { shop['画像'] && <img src={shop['画像']} alt={shop['スポット名']} style={{width: "100%"}} />}
+            { (shop['カテゴリ'] === "センキョ割実施店舗") &&
+              <p>
+                センキョ割内容:<br/>
+                {shop['Twitter']}
+              </p>
+            }
 
             <p style={{margin: "24px 0", wordBreak: "break-all"}}>{toBreakLine(content)}</p>
 
