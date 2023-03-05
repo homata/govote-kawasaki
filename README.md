@@ -1,35 +1,31 @@
-# Geolonia PWAマップ
+GoVote KAWASAKI マップ
+====
 
-## Geolonia PWAマップ について
+GoVote KAWASAKI マップ について
+----
+川崎市内の選挙投票所の情報として「期日前投票所」「ポスター掲示場設置場所」「センキョ割実施店」のマップを掲載してます。
 
-Geolonia PWA は、GitHub と Google Sheets を使って、素早く PWA の地図アプリが作れるテンプレートです。
+### さそいあって選挙にいこう！
+投票行動を川崎市民が身近に楽しめるムーブメントにしたい！と願う川崎市内の団体・組織・企業が集まって、この6月に「GoVote KAWASAKI」を立ち上げました。
 
-利用方法はこちらのマニュアルをご覧ください。
+まずは 7/10(日) の参議院選挙に向けて、川崎市民に投票行動を促します。
+「Go Vote KAWASAKI」を合言葉に投票をリアルやSNS上（Twitter / Instagram / Facebook）で呼びかけるほか、ポスター、ステッカー、Zoom背景、のデータを公式サイトで無料配布します。
 
-[Geolonia PWA マップ ユーザーマニュアル](https://blog.geolonia.com/2022/05/17/pwamap-manual-setup.html) 
+ぜひ、#GoVoteKAWASAKi のハッシュタグをつけて、発信してください！
 
-## 注意事項
-このプログラムは自由にカスタマイズ可能ですが、利用についてはサポート対象外となります。
 
-## 開発
+GoVote KAWASAKI について
+----
+GoVote KAWASAKI は川崎市民に投票を促す市民による活動です。
 
-[Geolonia PWA マップ ユーザーマニュアル](https://blog.geolonia.com/2022/05/17/pwamap-manual-setup.html) の手順を実行、その後以下のコマンドを実行して下さい。
+『Go Vote KAWASAKI』を合言葉に、ステッカー、ポスター、Zoom背景を無料配布するほか、市内の飲食店やサービス業のみなさんとともに投票へ行こう！の輪を広げていきます。
 
-```shell
-$ git clone git@github.com:geoloniamaps/pwa.git
-$ cd pwa
-$ npm install
-$ npm start
-```
+* [公式サイト](https://www.govote-kawasaki.jp/)
+* [Twitter](https://twitter.com/kawasaki_vote)
+* [Facebook](https://www.facebook.com/govote.kawasaki)
+* [Instagram](https://www.instagram.com/govote.kawasaki/?hl=ja)
 
-下の URL にアクセスして下さい。開発サーバーが立ち上がります。
 
-`http://localhost:3000/<あなたのリポジトリ名>/#/`
-
-## データの更新
-
-Geolonia PWA では、GitHub Actions を利用して、定期的に Google Sheets のデータをダウンロードしています。
-ローカル環境で開発時にデータの更新をする際は、`git pull origin master` を実行して最新のデータをダウンロードして下さい。
-
-- GitHub Actions は10分毎のスケジュールですが、GitHub の仕様により大幅に遅れる可能性があります。
-- リポジトリが60日間使用されないと、GitHub Actions は自動的に無効になります。ご注意ください。
+Geolonia PWAマップ について
+----
+このアプリは、株式会社 Geoloniaの[Geolonia PWAマップ](https://github.com/geoloniamaps/pwamap) を使用して作成されています。
