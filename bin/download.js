@@ -40,7 +40,7 @@ const table2json = (table) => {
 
 const downloadLogo = async (logo_image_url) => {
 
-  const distLogoFilePath = path.join(process.cwd(), "/public/assets/logo.png");
+  const distLogoFilePath = path.join(process.cwd(), "/public/logo.svg");
 
   // スプレッドシートのデータをダウンロードする
 
