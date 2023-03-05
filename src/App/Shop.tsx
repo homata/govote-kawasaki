@@ -61,7 +61,7 @@ const Content = (props: Props) => {
   return (
     <div className="shop-single">
       <div className="head">
-        <button onClick={clickHandler}><AiOutlineClose size="16px" color="#FFFFFF" /> 閉じる</button>
+        <button onClick={clickHandler}><AiOutlineClose size="24px" color="#000" />閉じる</button>
       </div>
       <div className="container">
         {shop?
