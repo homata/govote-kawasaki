@@ -2,7 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import './Tabbar.scss'
 
-import { FaList, FaHome, FaSearch, FaCamera } from "react-icons/fa"
+// import { FaList, FaHome, FaSearch, FaCamera } from "react-icons/fa"
+import { FaList, FaHome, FaSearch } from "react-icons/fa"
 import { AiOutlineAppstore } from "react-icons/ai"
 
 const Content = () => {
