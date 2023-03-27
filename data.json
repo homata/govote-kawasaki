@@ -1,5 +1,5 @@
 {
-  "range": "'スポットデータ'!A1:J1517",
+  "range": "'スポットデータ'!A1:J1518",
   "majorDimension": "ROWS",
   "values": [
     [
@@ -122,6 +122,16 @@
       "宮前区宮前平3-11-20",
       "https://makotoya-cleaning.jp/shops/miyamaedaira.html",
       "Yシャツまたはブラウス1点無料(4/9～4/23)"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=1sfoU8xK9CkP_0j_B4C9HNpazpmi5j_S7&usp=sharing",
+      "",
+      "",
+      "鈴や 武蔵中原店",
+      "中原区下小田中1-6-2",
+      "https://www.suzuya-group.com/store/index2.html"
     ],
     [
       "",
