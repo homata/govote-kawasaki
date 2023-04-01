@@ -1,5 +1,5 @@
 {
-  "range": "'スポットデータ'!A1:J1522",
+  "range": "'スポットデータ'!A1:J1523",
   "majorDimension": "ROWS",
   "values": [
     [
@@ -177,6 +177,17 @@
       "中原区上新城2-7-1 セシーズイシイ7 101",
       "https://terrace.seses-ishii.jp/",
       "投票済証明書持参でドリンク10％OFF(4/9)"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=1G629NlbA--t5avCMPsJfC20wTsfky1EM&usp=sharing",
+      "35.5297367",
+      "139.699572",
+      "いまがわ食堂 川崎銀柳街店",
+      "川崎区砂子2-3-1 2F",
+      "https://tabelog.com/kanagawa/A1405/A140501/14090017/",
+      "(未定)"
     ],
     [
       "",
