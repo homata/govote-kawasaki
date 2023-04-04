@@ -1,5 +1,5 @@
 {
-  "range": "'スポットデータ'!A1:J1536",
+  "range": "'スポットデータ'!A1:J1537",
   "majorDimension": "ROWS",
   "values": [
     [
@@ -34,6 +34,28 @@
       "中原区下小田中１丁目６−２ ムサシパレス1F",
       "https://www.suzuya-group.com/store/index2.html",
       "投票済証明書持参で惣菜1,000円以上購入で500円割引(4/9～4/16)"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=13_dlPwXz8U3MXxdLPHEPiuIUDikfovMD&usp=sharing",
+      "35.587988",
+      "139.630525",
+      "新城テラス",
+      "中原区上新城2-7-1 セシーズイシイ7 101",
+      "https://terrace.seses-ishii.jp/",
+      "投票済証明書持参でドリンク10％OFF(4/9)"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=1Ix9IW7m7WfJhXE66KZBIAqkT-qw69iY4&usp=sharing",
+      "35.5826034",
+      "139.5910661",
+      "ノジマ 宮前店",
+      "宮前区馬絹1丁目9番地5号",
+      "https://www.nojima.co.jp/campaign/senkyowari2023/",
+      "投票済証明書持参でお会計から550円OFF（3/23〜5/7）"
     ],
     [
       "",
@@ -192,9 +214,9 @@
     [
       "",
       "センキョ割実施店舗",
-      "",
-      "",
-      "",
+      "https://drive.google.com/uc?export=view&id=1Biro4yqfz1UC2QcsHQi-OgMIrGtJxgEw&usp=sharing",
+      "35.6331829",
+      "139.5510623",
       "鍼灸&リラクサロンセラヴィ",
       "多摩区中野島6丁目10番地",
       "https://www.instagram.com/cestlavie_acupuncture/",
@@ -204,19 +226,8 @@
       "",
       "センキョ割実施店舗",
       "https://drive.google.com/uc?export=view&id=1Ix9IW7m7WfJhXE66KZBIAqkT-qw69iY4&usp=sharing",
-      "",
-      "",
-      "ノジマ 宮前店",
-      "宮前区馬絹1丁目9番地5号",
-      "https://www.nojima.co.jp/campaign/senkyowari2023/",
-      "投票済証明書持参でお会計から550円OFF（3/23〜5/7）"
-    ],
-    [
-      "",
-      "センキョ割実施店舗",
-      "https://drive.google.com/uc?export=view&id=1Ix9IW7m7WfJhXE66KZBIAqkT-qw69iY4&usp=sharing",
-      "",
-      "",
+      "35.5988842",
+      "139.6127093",
       "ノジマ マルイファミリー溝口店",
       "高津区溝口1-4-1 マルイファミリー溝口9階",
       "https://www.nojima.co.jp/campaign/senkyowari2023/",
@@ -226,8 +237,8 @@
       "",
       "センキョ割実施店舗",
       "https://drive.google.com/uc?export=view&id=1Ix9IW7m7WfJhXE66KZBIAqkT-qw69iY4&usp=sharing",
-      "",
-      "",
+      "35.5148462",
+      "139.7067825",
       "ノジマ 川崎小田栄店",
       "川崎区小田栄2丁目3番1号 コーナン川崎小田栄店 2階",
       "https://www.nojima.co.jp/campaign/senkyowari2023/",
@@ -280,7 +291,7 @@
     [
       "",
       "センキョ割実施店舗",
-      "",
+      "https://drive.google.com/uc?export=view&id=1AUKj3gM1VG9JyyAFt_8W1YqeZucZ9yTZ&usp=sharing",
       "",
       "",
       "バルクフーズ 元住吉店",
@@ -291,7 +302,7 @@
     [
       "",
       "センキョ割実施店舗",
-      "",
+      "https://drive.google.com/uc?export=view&id=1lizGg5z0YDJBkv_dtBi-tAdOrbWhnxFQ&usp=sharing",
       "",
       "",
       "バルクフーズ 元住吉駅前店",
@@ -302,7 +313,7 @@
     [
       "",
       "センキョ割実施店舗",
-      "",
+      "https://drive.google.com/uc?export=view&id=103_st_QSE358OrKv6pgudQ6expKh90M1&usp=sharing",
       "",
       "",
       "バルクフーズ 新丸子店",
@@ -313,7 +324,7 @@
     [
       "",
       "センキョ割実施店舗",
-      "",
+      "https://drive.google.com/uc?export=view&id=1K5rsfdyXLhMvvJB3aYmaGfKT9P0KD-6z&usp=sharing",
       "",
       "",
       "鉄道模型買取専門ジーオ堂",
@@ -324,7 +335,7 @@
     [
       "",
       "センキョ割実施店舗",
-      "",
+      "https://drive.google.com/uc?export=view&id=1oA4SlLFJoScNgzjdj8HmVEw33HpkSl-c&usp=sharing",
       "",
       "",
       "エンドレスクリーン",
