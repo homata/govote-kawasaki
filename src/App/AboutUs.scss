@@ -75,6 +75,23 @@
       }
     }
   }
+  .note
+  {
+    margin-top: 5px;
+    padding: 4px;
+    ul {
+      margin-top: 8px;
+      list-style: disc;
+      li:before { content:"※ " }
+      li {
+        margin-top: 4px;
+        margin-bottom: 4px;
+        list-style:none;
+        color: #000;
+        font-size: 0.8rem;
+      }
+    }
+  }
 }
 
 // Hack for Edge to eliminate calc(env())

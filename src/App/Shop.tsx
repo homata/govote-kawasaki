@@ -80,13 +80,15 @@ const Content = (props: Props) => {
 
             { shop['画像'] && <img src={shop['画像']} alt={shop['スポット名']} style={{width: "100%"}} />}
             { (shop['カテゴリ'] === "センキョ割実施店舗") &&
-              <p>
-                センキョ割内容:<br/>
+              <div>
+                センキョ割内容:
+                <p style={{margin: "8px 0", wordBreak: "break-all"}}>
                 {shop['Twitter']}
-              </p>
+               </p>
+              </div>
             }
 
-            <p style={{margin: "24px 0", wordBreak: "break-all"}}>{toBreakLine(content)}</p>
+            <p style={{margin: "24px 0", wordBreak: "break-all"}}>住所：{toBreakLine(content)}</p>
 
             <div
               ref={mapNode}
@@ -98,6 +100,23 @@ const Content = (props: Props) => {
 
             <p><a className="small" href={`http://maps.apple.com/?q=${shop['緯度']},${shop['経度']}`}>スポットまでの道順</a></p>
 
+            <div className="note" >
+              { (shop['カテゴリ'] === "センキョ割実施店舗") &&
+                <p>
+                  <a href={shop['Instagram']}>店舗URL</a>
+                </p>
+              }
+              { (shop['カテゴリ'] !== "センキョ割実施店舗") &&
+                <p>
+                  <a href={shop['Instagram']}>出典URL</a>
+                </p>
+              }
+
+              <ul>
+                <li>ポスター掲示場設置場所、投票所、期日前投票所の情報は、平成31年第19回統一地方選挙のものを使用しております。令和5年第20回統一地方選挙と実情が異なる場合がございます。予めご了承ください。</li>
+                <li>ポスター掲示場設置場所、投票所、期日前投票所の位置は、住所を元におおよその位置を示しており、正確な位置を示した情報ではございません。ご注意ください。</li>
+              </ul>
+            </div>
           </>
           :
           <></>

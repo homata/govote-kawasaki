@@ -108,5 +108,21 @@
       opacity: 0.8;
     }
   }
-
+  .note
+  {
+    margin-top: 10px;
+    padding: 4px;
+    ul {
+      margin-top: 8px;
+      list-style: disc;
+      li:before { content:"※ " }
+      li {
+        margin-top: 4px;
+        margin-bottom: 4px;
+        list-style:none;
+        color: #a0a0a0;
+        font-size: 0.8rem;
+      }
+    }
+  }
 }

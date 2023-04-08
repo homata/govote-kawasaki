@@ -8,7 +8,7 @@ const setCluster = (map: any) => {
     ],
     paint: {
       'circle-radius': 20,
-      'circle-color': '#6F8E61',
+      'circle-color': '#59B55B',
       'circle-opacity': 1.0,
     },
   })

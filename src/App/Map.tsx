@@ -5,6 +5,21 @@ import toGeoJson from './toGeoJson'
 import setCluster from './setCluster'
 import Shop from './Shop'
 
+// Maker Icon images
+import svg_bbs from './assets/iconmap-bbs.svg'
+import svg_senkyowari_yen from './assets/iconmap-senkyowari-yen.svg'
+import svg_vote from './assets/iconmap-vote.svg'
+import svg_votebeforehand from './assets/iconmap-votebeforehand.svg'
+const maker_size = 48;
+const marker_bbs = new Image(maker_size, maker_size);
+const marker_senkyowari_yen = new Image(maker_size, maker_size);
+const marker_vote = new Image(maker_size, maker_size);
+const marker_votebeforehand = new Image(maker_size, maker_size);
+marker_bbs.src = svg_bbs;
+marker_senkyowari_yen.src = svg_senkyowari_yen;
+marker_vote.src = svg_vote;
+marker_votebeforehand.src = svg_votebeforehand;
+
 type Props = {
   data: Pwamap.ShopData[];
 };
@@ -71,7 +86,8 @@ const Content = (props: Props) => {
       const textColor = '#000000'
       const textHaloColor = '#FFFFFF'
 
-      const geojson = toGeoJson(data)
+
+      const geojson: any = toGeoJson(data)
 
       mapObject.addSource('shops', {
         type: 'geojson',
@@ -81,41 +97,62 @@ const Content = (props: Props) => {
         clusterRadius: 25,
       })
 
-      mapObject.addLayer({
-        id: 'shop-points',
-        type: 'symbol',
-        source: 'shops',
-        filter: ['==', "カテゴリ", "センキョ割実施店舗"],
-        layout: {
-          'icon-image': 'commercial',
-          'icon-overlap': 'always',
-          'icon-size': 1.5
-        }
-      })
+      geojson.features.forEach(function (feature: any) {
+        let category:string = feature.properties['カテゴリ'];
 
-      mapObject.addLayer({
-        id: 'voting-points',
-        type: 'symbol',
-        source: 'shops',
-        filter: ['==', "カテゴリ", "期日前投票所"],
-        layout: {
-          'icon-image': 'town_hall',
-          'icon-overlap': 'always',
-          'icon-size': 1.5
-        }
-      })
+        let layer_id: string = "";
+        let marker_object: any = null;
 
-      mapObject.addLayer({
-        id: 'poster-points',
-        type: 'symbol',
-        source: 'shops',
-        filter: ['==', "カテゴリ", "ポスター掲示場設置場所"],
-        layout: {
-          'icon-image': 'monument',
-          'icon-overlap': 'always',
-          'icon-size': 1.5
+        if (category === "センキョ割実施店舗") {
+          layer_id = 'poi-senkyowari_yen';
+          marker_object = marker_senkyowari_yen;
+        } else if (category === "期日前投票所") {
+          layer_id = 'poi-votebeforehand';
+          marker_object = marker_votebeforehand
+        } else if (category === "投票所") {
+          layer_id = 'poi-vote';
+          marker_object = marker_vote;
+        } else if (category === "ポスター掲示場設置場所") {
+          layer_id = 'poi-bbs';
+          marker_object = marker_bbs;
+        } else {
+          layer_id = "";
+          marker_object = null;
         }
-      })
+        // Add a layer for this symbol type if it hasn't been added already.
+        if (!mapObject.getLayer(layer_id)) {
+          // アイコン画像設定
+          let image_id: string = "img_" + layer_id;
+          mapObject.addImage(image_id, marker_object);
+
+          // スタイル設定
+          mapObject.addLayer({
+            'id': layer_id,
+            'type': 'symbol',
+            source: 'shops',
+            filter: ['==', "カテゴリ", category],
+            'layout': {
+              'icon-image': image_id,
+              "icon-allow-overlap": true,
+              "icon-size": 1.0
+            },
+          });
+
+          mapObject.on('mouseenter', layer_id, () => {
+            mapObject.getCanvas().style.cursor = 'pointer'
+          })
+
+          mapObject.on('mouseleave', layer_id, () => {
+            mapObject.getCanvas().style.cursor = ''
+          })
+
+          mapObject.on('click', layer_id, (event: any) => {
+            if (!event.features[0].properties.cluster) {
+              setShop(event.features[0].properties)
+            }
+          })
+        }
+      });
 
       mapObject.addLayer({
         id: 'shop-symbol',
@@ -140,51 +177,6 @@ const Content = (props: Props) => {
           'text-max-width': 12,
           'text-allow-overlap': false,
         },
-      })
-
-      // shop-points
-      mapObject.on('mouseenter', 'shop-points', () => {
-        mapObject.getCanvas().style.cursor = 'pointer'
-      })
-
-      mapObject.on('mouseleave', 'shop-points', () => {
-        mapObject.getCanvas().style.cursor = ''
-      })
-
-      mapObject.on('click', 'shop-points', (event: any) => {
-        if (!event.features[0].properties.cluster) {
-          setShop(event.features[0].properties)
-        }
-      })
-
-      // voting-points
-      mapObject.on('mouseenter', 'voting-points', () => {
-        mapObject.getCanvas().style.cursor = 'pointer'
-      })
-
-      mapObject.on('mouseleave', 'voting-points', () => {
-        mapObject.getCanvas().style.cursor = ''
-      })
-
-      mapObject.on('click', 'voting-points', (event: any) => {
-        if (!event.features[0].properties.cluster) {
-          setShop(event.features[0].properties)
-        }
-      })
-
-      // poster-points
-      mapObject.on('mouseenter', 'poster-points', () => {
-        mapObject.getCanvas().style.cursor = 'pointer'
-      })
-
-      mapObject.on('mouseleave', 'poster-points', () => {
-        mapObject.getCanvas().style.cursor = ''
-      })
-
-      mapObject.on('click', 'poster-points', (event: any) => {
-        if (!event.features[0].properties.cluster) {
-          setShop(event.features[0].properties)
-        }
       })
 
       // shop-symbol
