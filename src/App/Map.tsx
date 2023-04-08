@@ -1,4 +1,8 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from 'react';
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
+import './Map.scss';
+
 // @ts-ignore
 import geojsonExtent from '@mapbox/geojson-extent'
 import toGeoJson from './toGeoJson'
@@ -24,49 +28,14 @@ type Props = {
   data: Pwamap.ShopData[];
 };
 
-const CSS: React.CSSProperties = {
-  width: '100%',
-  height: '100%',
-  position: 'relative',
-}
-
-const hidePoiLayers = (map: any) => {
-
-  const hideLayers = [
-    'poi',
-    'poi-primary',
-    'poi-r0-r9',
-    'poi-r10-r24',
-    'poi-r25',
-    'poi-bus',
-    'poi-entrance',
-  ]
-
-  for (let i = 0; i < hideLayers.length; i++) {
-    const layerId = hideLayers[i];
-    map.setLayoutProperty(layerId, 'visibility', 'none')
-  }
-}
-
-const parseHash = (url?: Location | URL) => {
-  const qstr = (url || window.location).hash.substring(2);
-  const q = new URLSearchParams(qstr);
-  return q;
-};
-
-const updateHash = (q: URLSearchParams) => {
-
-  const hash = q.toString();
-  if (hash) {
-    window.location.hash = `#/?${q.toString().replace(/%2F/g, '/')}`;
-  }
-};
+let mapObject: maplibregl.Map;
 
 const Content = (props: Props) => {
-  const mapNode = React.useRef<HTMLDivElement>(null);
-  const [mapObject, setMapObject] = React.useState<any>()
+  const mapContainer = useRef<HTMLDivElement | null>(null);
+  const [lng] = useState(139.659963);
+  const [lat] = useState(35.576655);
+  const [zoom] = useState(10);
   const [shop, setShop] = React.useState<Pwamap.ShopData | undefined>(undefined)
-  const [ zLatLngString, setZLatLngString ] = React.useState<string>('');
 
   const addMarkers = (mapObject: any, data: any) => {
 
@@ -81,7 +50,7 @@ const Content = (props: Props) => {
         return
       }
 
-      hidePoiLayers(mapObject)
+      //hidePoiLayers(mapObject)
 
       const textColor = '#000000'
       const textHaloColor = '#FFFFFF'
@@ -206,108 +175,29 @@ const Content = (props: Props) => {
 
   }, [mapObject, props.data])
 
-  React.useEffect(() => {
-    const hash = parseHash();
-    if (zLatLngString) {
-      hash.set('map', zLatLngString);
-    }
-    updateHash(hash);
+  useEffect(() => {
+    if (!mapObject) {
+      if (!mapContainer.current) return;
 
-  }, [ zLatLngString ]);
-
-  React.useEffect(() => {
-    // Only once reder the map.
-    if (!mapNode.current || mapObject) {
-      return
-    }
-
-    // @ts-ignore
-    const { geolonia } = window;
-
-    const geojson = toGeoJson(props.data)
-    const bounds = geojsonExtent(geojson)
-
-    const map = new geolonia.Map({
-      container: mapNode.current,
-      style: 'geolonia/gsi',
-      bounds: bounds,
-      fitBoundsOptions: { padding: 50 },
-    });
-
-    const hash = parseHash();
-    if (hash && hash.get('map')) {
-
-      const latLngString = hash.get('map') || '';
-      const zlatlng = latLngString.split('/');
-
-      const zoom = zlatlng[0]
-      const lat = zlatlng[1]
-      const lng = zlatlng[2]
-
-      map.flyTo({center: [lng, lat], zoom});
-
-    } else if (bounds) {
-
-      map.fitBounds(bounds, { padding: 50 })
-
-    }
-
-    const onMapLoad = () => {
-      hidePoiLayers(map)
-      setMapObject(map)
-
-      map.on('moveend', () => {
-        // see: https://github.com/maplibre/maplibre-gl-js/blob/ba7bfbc846910c5ae848aaeebe4bde6833fc9cdc/src/ui/hash.js#L59
-        const center = map.getCenter(),
-          rawZoom = map.getZoom(),
-          zoom = Math.round(rawZoom * 100) / 100,
-          // derived from equation: 512px * 2^z / 360 / 10^d < 0.5px
-          precision = Math.ceil((zoom * Math.LN2 + Math.log(512 / 360 / 0.5)) / Math.LN10),
-          m = Math.pow(10, precision),
-          lng = Math.round(center.lng * m) / m,
-          lat = Math.round(center.lat * m) / m,
-          zStr = Math.ceil(zoom);
-
-        setZLatLngString(`${zStr}/${lat}/${lng}`);
+      mapObject = new maplibregl.Map({
+        container: mapContainer.current,
+        style: 'https://tile.openstreetmap.jp/styles/osm-bright-ja/style.json', // 地図のスタイル
+        center: [lng, lat],  // 中心座標
+        zoom: zoom, // ズームレベル
+        pitch: 0, // 傾き
+        bearing: 0
       });
     }
 
-    const orienteationchangeHandler = () => {
-      map.resize()
-    }
-
-    // attach
-    map.on('load', onMapLoad)
-
-    window.addEventListener('orientationchange', orienteationchangeHandler)
-
-    return () => {
-      // detach to prevent memory leak
-      window.removeEventListener('orientationchange', orienteationchangeHandler)
-      map.off('load', onMapLoad)
-    }
-  }, [mapNode, mapObject, props.data])
-
-  const closeHandler = () => {
-    setShop(undefined)
-  }
+    // @ts-ignore
+    //mapObject.addControl(new maplibregl.NavigationControl());
+  }, [mapObject, props.data])
 
   return (
-    <div style={CSS}>
-      <div
-        ref={mapNode}
-        style={CSS}
-        data-geolocate-control="on"
-        data-marker="off"
-        data-gesture-handling="off"
-      ></div>
-      {shop ?
-        <Shop shop={shop} close={closeHandler} />
-        :
-        <></>
-      }
+    <div className="map-wrap">
+      <div className="map-container" ref={mapContainer}></div>
     </div>
   );
-};
+}
 
 export default Content;
