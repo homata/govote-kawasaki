@@ -12,20 +12,37 @@ GoVote KAWASAKIアプリは、川崎市内のポスター掲示場設置場所�
 * [Facebook](https://www.facebook.com/govote.kawasaki)
 * [Instagram](https://www.instagram.com/govote.kawasaki/?hl=ja)
 
-### About Geolonia PWAマップ
-このアプリは、株式会社Geoloniaの「[Geolonia PWAマップ](https://github.com/geoloniamaps/pwamap)」を使用して作成されています。
+### データの更新
+GitHub Actionsで10分毎のスケジュールでGoogleスプレットシートからデータをダウンロードしています
 
-### powered by オープン川崎
-[オープン川崎](https://www.openkawasaki.org/)とは、川崎市を活性化することを目的とした市民参加型のコミュニティです
+更新データ
+* スポットデータ：/public/data.json
+* 基本データ: /src/config.json
 
-* 川崎ならではのコミュニティつくり
-* 次世代の人材育成
-* 地域を面白くする
-* 地域課題解決と新たな事業創造を行う
+リポジトリが60日間使用されないと、GitHub Actions は自動的に無効になります。
+
+### 開発環境作成
+モジュールは [package.json](https://raw.githubusercontent.com/openkawasaki/govote-kawasaki/master/package.json) を参照ください
+```
+$ git clone git@github.com:openkawasaki/govote-kawasaki.git
+$ cd govote-kawasaki
+$ npm install
+$ npm start
+```
+
+#### 環境変数
+* GOOGLE_SHEET_API_KEY: Google APIキー
+* GOOGLE_SHEET_URL: Googleスプレットシート URL
+
+### License
+MIT License: See the [license](./LICENSE.txt) document for the full text.
+
+各々のライセンスに従ってください。
+* [Geolonia PWAマップ](https://github.com/geoloniamaps/pwamap)
 
 ### Contributors
-GoVote KAWASAKIアプリは、下記のメンバーで開発されています
+[CONTRIBUTORS.md](./CONTRIBUTORS.md) を参照ください
 
-| GitHub                              | Twitter                                |
-|-------------------------------------|----------------------------------------|
-| [homata](http://github.com/homata)  | [@homata](https://twitter.com/homata)  |
+---
+
+[powered by オープン川崎](https://www.openkawasaki.org/)

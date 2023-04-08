@@ -1,0 +1,19 @@
+Google Analytics (Google アナリティクス) の利用について
+====
+このアプリは、機能向上や改善のためにGoogle LCCのGoogleアナリティクスを利用しています。
+Googleアナリティクスは、Cookieを利用して個人を特定する情報を含まずにウェブサイトの利用データを収集してます。
+Cookieの利用に関してはGoogleのプライバシーポリシーの規約に基づいております。 
+取得したデータはウェブサイト利用状況の分析、サイト運営者へのレポートの作成、その他のサービスの提供に関わる目的に限り、これを使用します。 
+Google Analyticsの利用規約及びプライバシーポリシーに関する説明については、Google Analyticsのサイトをご覧ください。
+
+Google 利用規約
+https://policies.google.com/terms
+
+Google プライバシーポリシー
+https://policies.google.com/privacy
+
+Google Analytics利用規約
+https://marketingplatform.google.com/about/analytics/terms/jp/
+
+Google Analyticsに関する詳細情報
+https://marketingplatform.google.com/about/analytics/

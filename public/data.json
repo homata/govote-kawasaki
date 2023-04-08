@@ -1,5 +1,5 @@
 {
-  "range": "'スポットデータ'!A1:J1544",
+  "range": "'スポットデータ'!A1:J1536",
   "majorDimension": "ROWS",
   "values": [
     [
@@ -66,7 +66,7 @@
       "いまがわ食堂 川崎銀柳街店",
       "川崎区砂子2-3-1 2F",
       "https://tabelog.com/kanagawa/A1405/A140501/14090017/",
-      "投票済証明書持参でアジフライ一枚サービス（4/7〜4/30）"
+      "(未定)"
     ],
     [
       "",
@@ -89,94 +89,6 @@
       "中原区木月祗園町7-13",
       "https://stores.senkyowari.com/shops/4Yz0RGClV5fC_X19AuGJv/",
       "投票済証明書持参でお買い上げ1,000円以上で5%OFF（4/1〜4/30）"
-    ],
-    [
-      "",
-      "センキョ割実施店舗",
-      "https://drive.google.com/uc?export=view&id=1OTrnbIZBoSDrFPr9rXq-Jzh9vt0gLgNi&usp=sharing",
-      "35.5274169",
-      "139.7169296",
-      "川崎駅近フォトベース tan de kids",
-      "川崎区中島3丁目9-11-402",
-      "https://kids.tande.jp/",
-      "投票済証明書のご提示で出張撮影500円OFF（5/31まで）"
-    ],
-    [
-      "",
-      "センキョ割実施店舗",
-      "https://drive.google.com/uc?export=view&id=1IFFoelBTQSRA6AxtCAmIS4BSg9rNmXNz&usp=sharing",
-      "35.5984116",
-      "139.6113968",
-      "Bistro ichi（ビストロ イチ）",
-      "高津区溝口 1-1-30 溝の口ブロックス 1F",
-      "http://bistro-ichi.com/",
-      "投票済証明書持参でお会計から500円OFF（4/9〜4/13）"
-    ],
-    [
-      "",
-      "センキョ割実施店舗",
-      "https://drive.google.com/uc?export=view&id=1DkPSjYNf-E_04rUyQnJUCH4O5E2Nri9T&usp=sharing",
-      "35.6177329",
-      "139.5663594",
-      "Pub&Bar AVENUE",
-      "多摩区登戸２６６２−２ ヨシザワ８ビル 4F",
-      "https://avenue-rumi.jimdofree.com/",
-      "（内容検討中）"
-    ],
-    [
-      "",
-      "センキョ割実施店舗",
-      "https://drive.google.com/uc?export=view&id=1M1ZcprGjXgNfMRSIQlevFES40pG6wHxV&usp=sharing",
-      "35.6189199",
-      "139.5683488",
-      "Music lounge ZINCO",
-      "多摩区登戸2578-1 登戸ハイデンス 1F",
-      "https://goo.gl/maps/mjnqD5EtYbdUxNuXA",
-      "投票済証明書持参でグラスビール1杯、カラオケチケット（5曲）1枚サービス（終了日未定）"
-    ],
-    [
-      "",
-      "センキョ割実施店舗",
-      "https://drive.google.com/uc?export=view&id=1n0dSL-KHrnbesEG-XBj15tFH5loh8RQ5&usp=sharing",
-      "35.6189199",
-      "139.5683488",
-      "居酒屋うみ",
-      "多摩区登戸2578-1 登戸ハイデンス 1F",
-      "https://goo.gl/maps/GsTmUSw7UNjcTP3NA",
-      "投票済証明書持参で焼酎割りもの1杯、おつまみ1品サービス（終了日未定）"
-    ],
-    [
-      "",
-      "センキョ割実施店舗",
-      "https://drive.google.com/uc?export=view&id=1FeqIOLOwrJHnoS0czY5NQKfzxJ65hxVU&usp=sharing",
-      "35.5374552",
-      "139.6917713",
-      "カフェデニム",
-      "幸区都町６ フォレストアーリア 101",
-      "https://www.denimbis.com/page/2",
-      "投票済証明書持参でカフェインレスコーヒーのドリップパック1個プレゼント（4/7〜4/30）"
-    ],
-    [
-      "",
-      "センキョ割実施店舗",
-      "https://drive.google.com/uc?export=view&id=1pyJgdZaVabDjlkgMBuunFHJmImyKB_ta&usp=sharing",
-      "35.537299",
-      "139.6922161",
-      "Denim bis ～珈琲焙煎とおやつ～",
-      "幸区中幸町１丁目２５−２",
-      "https://www.facebook.com/Denimbis2/",
-      "投票済証明書持参でカフェインレスコーヒーのドリップパック1個プレゼント（4/7〜4/30）"
-    ],
-    [
-      "",
-      "センキョ割実施店舗",
-      "https://drive.google.com/uc?export=view&id=1LZIs0RsOCb-1dAaW5gYr9FLuI9jiJDhx&usp=sharing",
-      "35.5869442",
-      "139.630675",
-      "肉と飯",
-      "中原区上新城２丁目１０−１５",
-      "https://www.instagram.com/niku_to_meshi/",
-      "投票済証明書持参でレモンサワー、お茶割り、ソフトドリンクをサービス（4/8〜4/9）"
     ],
     [
       "",

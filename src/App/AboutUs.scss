@@ -75,6 +75,17 @@
       }
     }
   }
+  .info-list
+  {
+    ul {
+      margin-top: 8px;
+      list-style: none;
+      li:before { content:"・ " }
+      li {
+        list-style: none;
+      }
+    }
+  }
   .note
   {
     margin-top: 5px;
@@ -91,6 +102,31 @@
         font-size: 0.8rem;
       }
     }
+  }
+  .note_small
+  {
+    margin-top: 10px;
+    padding: 4px;
+    ul {
+      margin-top: 8px;
+      list-style: disc;
+      li:before { content:"・ " }
+      li {
+        margin-top: 4px;
+        margin-bottom: 4px;
+        list-style:none;
+        color: #a0a0a0;
+        font-size: 0.7rem;
+      }
+    }
+  }
+  .copyright
+  {
+    text-align:right;
+    font-size: 0.5rem;
+    margin-top: 4px;
+    margin-bottom: 4px;
+    color: #a0a0a0;
   }
 }
 
