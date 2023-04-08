@@ -39,29 +39,41 @@ const Content = () => {
 
         <h4>関連サイト</h4>
         <p>
-          <ul style={{ listStyleType: "none" }}>
-            <li><a href="https://www.govote-kawasaki.jp/" target='_blank' rel="noreferrer">・公式サイト</a></li>
-            <li><a href="https://twitter.com/kawasaki_vote" target='_blank' rel="noreferrer">・Twitter</a></li>
-            <li><a href="https://www.facebook.com/govote.kawasaki" target='_blank' rel="noreferrer">・Facebook</a></li>
-            <li><a href="https://www.instagram.com/govote.kawasaki/?hl=ja" target='_blank' rel="noreferrer">・Instagram</a></li>
-          </ul>
+          <div className="info-list">
+            <ul>
+              <li><a href="https://www.govote-kawasaki.jp/" target='_blank' rel="noreferrer">公式サイト</a></li>
+              <li><a href="https://twitter.com/kawasaki_vote" target='_blank' rel="noreferrer">Twitter</a></li>
+              <li><a href="https://www.facebook.com/govote.kawasaki" target='_blank' rel="noreferrer">Facebook</a></li>
+              <li><a href="https://www.instagram.com/govote.kawasaki/?hl=ja" target='_blank' rel="noreferrer">Instagram</a></li>
+            </ul>
+          </div>
         </p>
+
         <h4>選挙情報</h4>
         <p>
-          令和5年4月9日執行第20回統一地方選挙<br/>
-          投票日：令和5年4月9日(日) 朝7時～夜8時<br/>
-          <ul style={{ listStyleType: "none" }}>
-            <li>・川崎市議会議員選挙</li>
-            <li>・神奈川県議会議員選挙</li>
-            <li>・神奈川県知事選挙</li>
-          </ul>
+          <div className="info-list">
+            令和5年4月9日執行第20回統一地方選挙<br/>
+            投票日：令和5年4月9日(日) 朝7時～夜8時<br/>
+            期日前投票：令和5年3月24日(金)-4月8日(土)
+            <div style={{ marginTop: '10px', marginBottom: "10px"}}>
+              <ul style={{ listStyleType: "none" }}>
+                <li><a href="https://senkyo-kawasaki2023.jp/05kouhosya.htm" target='_blank' rel="noreferrer">川崎市議会議員選挙</a></li>
+                <li><a href="https://www.pref.kanagawa.jp/docs/em7/2023touitsu_kouhosyajouhou.html" target='_blank' rel="noreferrer">神奈川県議会議員選挙</a></li>
+                <li><a href="https://www.pref.kanagawa.jp/docs/em7/2023touitsu_kouhosyajouhou.html" target='_blank' rel="noreferrer">神奈川県知事選挙</a></li>
+              </ul>
+            </div>
+          </div>
         </p>
+
         <h4>外部リンク</h4>
         <p>
-          <ul style={{ listStyleType: "none" }}>
-            <li><a href="https://senkyo-kawasaki2023.jp/index.htm" target='_blank' rel="noreferrer">・令和5年4月9日執行第20回統一地方選挙特設ホームページ</a></li>
-            <li><a href="https://www.city.kawasaki.jp/shisei/category/58-1-0-0-0-0-0-0-0-0.html" target='_blank' rel="noreferrer">・川崎市の選挙情報</a></li>
-          </ul>
+          <div className="info-list">
+            <ul style={{ listStyleType: "none" }}>
+              <li><a href="https://senkyo-kawasaki2023.jp/index.htm" target='_blank' rel="noreferrer">令和5年4月9日執行第20回統一地方選挙特設ホームページ</a></li>
+              <li><a href="https://www.city.kawasaki.jp/shisei/category/58-1-0-0-0-0-0-0-0-0.html" target='_blank' rel="noreferrer">川崎市の選挙情報</a></li>
+              <li><a href="https://senkyo-kawasaki2023.jp/05kouhosya.htm" target='_blank' rel="noreferrer">立候補者情報</a></li>
+            </ul>
+          </div>
         </p>
 
         <div className="note" >
@@ -76,12 +88,19 @@ const Content = () => {
           </p>
         </div>
 
-        <h4>About Geolonia PWAマップ</h4>
-        <p>
-          このアプリは、株式会社Geoloniaの「<a href="https://github.com/geoloniamaps/pwamap" target='_blank' rel="noreferrer">Geolonia PWAマップ</a>」のソースコードを元に作成されています。
-        </p>
+        <div className="note_small" >
+          <h5>その他</h5>
+          <p>
+            <ul>
+              <li><a href="https://raw.githubusercontent.com/openkawasaki/govote-kawasaki/master/LICENSE.txt" target='_blank' rel="noreferrer">ライセンス表示</a></li>
+              <li><a href="https://raw.githubusercontent.com/openkawasaki/govote-kawasaki/master/google_analytics.txt" target='_blank' rel="noreferrer">Google Analyticsの利用について</a></li>
+            </ul>
+          </p>
+        </div>
 
-        <h5>powered by オープン川崎</h5>
+        <div className="copyright">
+          powered by オープン川崎
+        </div>
 
       </div>
     </div>

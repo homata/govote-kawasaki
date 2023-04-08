@@ -1,5 +1,5 @@
 {
-  "range": "'スポットデータ'!A1:J1521",
+  "range": "'スポットデータ'!A1:J1536",
   "majorDimension": "ROWS",
   "values": [
     [
@@ -38,6 +38,61 @@
     [
       "",
       "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=13_dlPwXz8U3MXxdLPHEPiuIUDikfovMD&usp=sharing",
+      "35.587988",
+      "139.630525",
+      "新城テラス",
+      "中原区上新城2-7-1 セシーズイシイ7 101",
+      "https://terrace.seses-ishii.jp/",
+      "投票済証明書持参でドリンク10％OFF(4/9)"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=1Ix9IW7m7WfJhXE66KZBIAqkT-qw69iY4&usp=sharing",
+      "35.5826034",
+      "139.5910661",
+      "ノジマ 宮前店",
+      "宮前区馬絹1丁目9番地5号",
+      "https://www.nojima.co.jp/campaign/senkyowari2023/",
+      "投票済証明書持参でお会計から550円OFF（3/23〜5/7）"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=1G629NlbA--t5avCMPsJfC20wTsfky1EM&usp=sharing",
+      "35.5297367",
+      "139.699572",
+      "いまがわ食堂 川崎銀柳街店",
+      "川崎区砂子2-3-1 2F",
+      "https://tabelog.com/kanagawa/A1405/A140501/14090017/",
+      "(未定)"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=1Biro4yqfz1UC2QcsHQi-OgMIrGtJxgEw&usp=sharing",
+      "35.6331829",
+      "139.5510623",
+      "鍼灸&リラクサロンセラヴィ",
+      "多摩区中野島6丁目10番地",
+      "https://www.instagram.com/cestlavie_acupuncture/",
+      "投票済証明書持参で100円OFF（5/31まで）"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=1AUKj3gM1VG9JyyAFt_8W1YqeZucZ9yTZ&usp=sharing",
+      "35.5672805",
+      "139.6505688",
+      "バルクフーズ 元住吉店",
+      "中原区木月祗園町7-13",
+      "https://stores.senkyowari.com/shops/4Yz0RGClV5fC_X19AuGJv/",
+      "投票済証明書持参でお買い上げ1,000円以上で5%OFF（4/1〜4/30）"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
       "https://drive.google.com/uc?export=view&id=1VIT6-VGMGaDLw5bF0gJgP6aHI3ik-zn-&usp=sharing",
       "35.59143",
       "139.60483",
@@ -60,6 +115,17 @@
     [
       "",
       "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=1Ix9IW7m7WfJhXE66KZBIAqkT-qw69iY4&usp=sharing",
+      "35.5988842",
+      "139.6127093",
+      "ノジマ マルイファミリー溝口店",
+      "高津区溝口1-4-1 マルイファミリー溝口9階",
+      "https://www.nojima.co.jp/campaign/senkyowari2023/",
+      "投票済証明書持参でお会計から550円OFF（3/23〜5/7）"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
       "https://drive.google.com/uc?export=view&id=13lc7TRtwYDZ2ijI5kudIzroPA1ZofuHt&usp=sharing",
       "35.59104",
       "139.61585",
@@ -71,6 +137,17 @@
     [
       "",
       "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=1lw_YhB1Or7ufr6NcMrozaFP_yPmwU8RM&usp=sharing",
+      "35.5995463",
+      "139.6097006",
+      "すずや 溝の口本店",
+      "高津区溝の口2-3-7　サウスウィングビル2F",
+      "https://www.suzuya-group.com/store/index.htmll",
+      "投票済証明書持参で500円割引(4/9～4/16)"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
       "https://drive.google.com/uc?export=view&id=1eW-tTVDr_UR3xOBQj6rb09lGtAq6ZOcZ&usp=sharing",
       "35.59448",
       "139.61744",
@@ -78,6 +155,17 @@
       "高津区久本3-12-19",
       "https://makotoya-cleaning.jp/shops/hisamoto.html",
       "投票済証明書持参でYシャツまたはブラウス1点無料(4/9～4/23)"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=1Ix9IW7m7WfJhXE66KZBIAqkT-qw69iY4&usp=sharing",
+      "35.5148462",
+      "139.7067825",
+      "ノジマ 川崎小田栄店",
+      "川崎区小田栄2丁目3番1号 コーナン川崎小田栄店 2階",
+      "https://www.nojima.co.jp/campaign/senkyowari2023/",
+      "投票済証明書持参でお会計から550円OFF（3/23〜5/7）"
     ],
     [
       "",
@@ -148,17 +236,6 @@
     [
       "",
       "センキョ割実施店舗",
-      "https://drive.google.com/uc?export=view&id=1lw_YhB1Or7ufr6NcMrozaFP_yPmwU8RM&usp=sharing",
-      "35.5995463",
-      "139.6097006",
-      "すずや 溝の口本店",
-      "高津区溝の口2-3-7　サウスウィングビル2F",
-      "https://www.suzuya-group.com/store/index.htmll",
-      "投票済証明書持参で500円割引(4/9～4/16)"
-    ],
-    [
-      "",
-      "センキョ割実施店舗",
       "https://drive.google.com/uc?export=view&id=1-UF4JCluqXy0p4hH5CFArthU7Oss1cPR&usp=sharing",
       "35.5983527",
       "139.6114307",
@@ -166,6 +243,94 @@
       "高津区溝口1-1-30 溝の口ブロックス104",
       "https://www.suzuya-group.com/store/index6.html",
       "投票済証明書持参で500円割引(4/9～4/16)"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=1Ix9IW7m7WfJhXE66KZBIAqkT-qw69iY4&usp=sharing",
+      "35.5753499",
+      "139.65784",
+      "ノジマ イトーヨーカドー武蔵小杉駅前店",
+      "中原区小杉町3-420 イトーヨーカドー武蔵小杉駅前店5階",
+      "https://www.nojima.co.jp/campaign/senkyowari2023/",
+      "投票済証明書持参でお会計から550円OFF（3/23〜5/7）"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=1Ix9IW7m7WfJhXE66KZBIAqkT-qw69iY4&usp=sharing",
+      "35.5925649",
+      "139.635263",
+      "ノジマ 川崎中原店",
+      "中原区宮内2-25-18",
+      "https://www.nojima.co.jp/campaign/senkyowari2023/",
+      "投票済証明書持参でお会計から550円OFF（3/23〜5/7）"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=1Ix9IW7m7WfJhXE66KZBIAqkT-qw69iY4&usp=sharing",
+      "35.6027666",
+      "139.506995",
+      "ノジマ イオン新百合ヶ丘店",
+      "麻生区上麻生1-19　イオン新百合ヶ丘5階",
+      "https://www.nojima.co.jp/campaign/senkyowari2023/",
+      "投票済証明書持参でお会計から550円OFF（3/23〜5/7）"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=1Ix9IW7m7WfJhXE66KZBIAqkT-qw69iY4&usp=sharing",
+      "35.5922611",
+      "139.5451511",
+      "ノジマ 川崎水沢店",
+      "宮前区水沢2丁目3番8号",
+      "https://www.nojima.co.jp/campaign/senkyowari2023/",
+      "投票済証明書持参でお会計から550円OFF（3/23〜5/7）"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=1lizGg5z0YDJBkv_dtBi-tAdOrbWhnxFQ&usp=sharing",
+      "35.5649111",
+      "139.6533099",
+      "バルクフーズ 元住吉駅前店",
+      "中原区木月1-35-36",
+      "https://stores.senkyowari.com/shops/1nQ1V1_U2QMw3B6pnKN8l/",
+      "投票済証明書持参でお買い上げ1,000円以上で5%OFF（4/1〜4/30）"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=103_st_QSE358OrKv6pgudQ6expKh90M1&usp=sharing",
+      "35.5798286",
+      "139.661068",
+      "バルクフーズ 新丸子店",
+      "中原区新丸子町769",
+      "https://stores.senkyowari.com/shops/F9bImcbjmTY_ZNkGqrg-A/",
+      "投票済証明書持参でお買い上げ1,000円以上で5%OFF（4/1〜4/30）"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=1K5rsfdyXLhMvvJB3aYmaGfKT9P0KD-6z&usp=sharing",
+      "35.5294331",
+      "139.7053027",
+      "鉄道模型買取専門ジーオ堂",
+      "川崎区宮前町8-13 大幸ビル4F",
+      "https://stores.senkyowari.com/shops/GSSfsf-9mUjP9Udol2MMx/",
+      "投票済証明書持参で通常査定金額に10％分上乗せ買取（4/9〜4/23）"
+    ],
+    [
+      "",
+      "センキョ割実施店舗",
+      "https://drive.google.com/uc?export=view&id=1oA4SlLFJoScNgzjdj8HmVEw33HpkSl-c&usp=sharing",
+      "35.626999",
+      "139.540404",
+      "エンドレスクリーン",
+      "多摩区菅馬場2-4-35",
+      "https://stores.senkyowari.com/shops/IubCdqHwYOhihrykJcQkk/",
+      "投票済証明書持参でお会計より10％OFF（5/7まで）"
     ],
     [
       "",
