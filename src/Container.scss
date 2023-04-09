@@ -8,6 +8,7 @@
   align-items: center;
 }
 
+/*
 .inner-container
 {
   padding: 0;
@@ -47,8 +48,9 @@
   align-items: center;
   color: #FFFFFF;
 }
+*/
 
-@media only screen and (max-width: 960px) {
+//@media only screen and (max-width: 960px) {
   .inner-container
   {
     padding: 0;
@@ -81,4 +83,4 @@
   {
     display: none;
   }
-}
+//}
