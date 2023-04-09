@@ -4,8 +4,8 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import './Map.scss';
 
 // @ts-ignore　OpacityControlプラグインの読み込み
-import OpacityControl from 'maplibre-gl-opacity';
-import 'maplibre-gl-opacity/dist/maplibre-gl-opacity.css';
+//import OpacityControl from 'maplibre-gl-opacity';
+//import 'maplibre-gl-opacity/dist/maplibre-gl-opacity.css';
 
 // @ts-ignore
 //import geojsonExtent from '@mapbox/geojson-extent'
