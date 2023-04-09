@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useRef, useState } from 'react';
 import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import './Map.scss';
@@ -65,9 +65,9 @@ const Content = (props: Props) => {
   const [shop, setShop] = React.useState<Pwamap.ShopData | undefined>(undefined)
   const [zLatLngString, setZLatLngString] = React.useState<string>('');
   // 川崎市
-  const [longitude] = useState(139.9528);
-  const [latitude] = useState(35.512);
-  const [zoom] = useState(10);
+  const [longitude] = useState(139.6347);
+  const [latitude] = useState(35.5542);
+  const [zoom] = useState(11);
 
   const addMarkers = (mapObject: any, data: any) => {
     if (!mapObject || !data) {
@@ -197,7 +197,7 @@ const Content = (props: Props) => {
     if (mapObject) {
       mapObject.flyTo({center: [longitude, latitude], zoom: zoom});
     }
-  }, [longitude, latitude, zoom])
+  }, [mapObject, longitude, latitude, zoom])
 
   React.useEffect(() => {
     addMarkers(mapObject, props.data)
@@ -227,9 +227,25 @@ const Content = (props: Props) => {
       center: [longitude, latitude],  // 中心座標
       zoom: zoom, // ズームレベル
       pitch: 0, // 傾き
-      bearing: 0
+      bearing: 0,
+      attributionControl: false // 既存Attributionを非表示
     });
 
+    // コントロールの追加
+    // Attributionを折りたたみ表示
+    map.addControl(new maplibregl.AttributionControl({compact: true}), 'top-right');
+    // @ts-ignore　スケール
+    map.addControl(new maplibregl.ScaleControl(), 'top-left');
+    // @ts-ignore　拡大・縮小　
+    map.addControl(new maplibregl.NavigationControl(), 'top-right');
+    // 現在位置検索
+    map.addControl(new maplibregl.GeolocateControl({positionOptions: {enableHighAccuracy: true},trackUserLocation: true}), 'top-right');
+    // @ts-ignore　フルスクリーン
+    map.addControl(new maplibregl.FullscreenControl({container: document.querySelector('body')}));
+    // タイル枠
+    //map.showTileBoundaries = true;
+
+    // URLハッシュを作成して、位置移動
     // const hash = parseHash();
     // if (hash && hash.get('map')) {
     //   const latLngString = hash.get('map') || '';
@@ -277,7 +293,7 @@ const Content = (props: Props) => {
       window.removeEventListener('orientationchange', orienteationchangeHandler)
       map.off('load', onMapLoad)
     }
-  }, [mapObject, props.data])
+  }, [mapObject, props.data, longitude, latitude, zoom])
 
   const closeHandler = () => {
     setShop(undefined)
