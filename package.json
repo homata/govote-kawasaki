@@ -19,6 +19,7 @@
     "icon-gen": "^3.0.0",
     "mapbox-gl": "^2.13.0",
     "maplibre-gl": "^2.4.0",
+    "maplibre-gl-opacity": "^1.4.0",
     "next-qrcode": "^2.0.0",
     "pwa-asset-generator": "^6.0.6",
     "react": "^17.0.2",
