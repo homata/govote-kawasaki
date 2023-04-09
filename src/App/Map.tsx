@@ -1,6 +1,10 @@
-import React from "react";
+import React, { useRef, useEffect, useState } from 'react';
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
+import './Map.scss';
+
 // @ts-ignore
-import geojsonExtent from '@mapbox/geojson-extent'
+//import geojsonExtent from '@mapbox/geojson-extent'
 import toGeoJson from './toGeoJson'
 import setCluster from './setCluster'
 import Shop from './Shop'
@@ -24,29 +28,23 @@ type Props = {
   data: Pwamap.ShopData[];
 };
 
-const CSS: React.CSSProperties = {
-  width: '100%',
-  height: '100%',
-  position: 'relative',
-}
-
-const hidePoiLayers = (map: any) => {
-
-  const hideLayers = [
-    'poi',
-    'poi-primary',
-    'poi-r0-r9',
-    'poi-r10-r24',
-    'poi-r25',
-    'poi-bus',
-    'poi-entrance',
-  ]
-
-  for (let i = 0; i < hideLayers.length; i++) {
-    const layerId = hideLayers[i];
-    map.setLayoutProperty(layerId, 'visibility', 'none')
-  }
-}
+// const hidePoiLayers = (map: any) => {
+//
+//   const hideLayers = [
+//     'poi',
+//     'poi-primary',
+//     'poi-r0-r9',
+//     'poi-r10-r24',
+//     'poi-r25',
+//     'poi-bus',
+//     'poi-entrance',
+//   ]
+//
+//   for (let i = 0; i < hideLayers.length; i++) {
+//     const layerId = hideLayers[i];
+//     map.setLayoutProperty(layerId, 'visibility', 'none')
+//   }
+// }
 
 const parseHash = (url?: Location | URL) => {
   const qstr = (url || window.location).hash.substring(2);
@@ -55,7 +53,6 @@ const parseHash = (url?: Location | URL) => {
 };
 
 const updateHash = (q: URLSearchParams) => {
-
   const hash = q.toString();
   if (hash) {
     window.location.hash = `#/?${q.toString().replace(/%2F/g, '/')}`;
@@ -63,32 +60,30 @@ const updateHash = (q: URLSearchParams) => {
 };
 
 const Content = (props: Props) => {
-  const mapNode = React.useRef<HTMLDivElement>(null);
-  const [mapObject, setMapObject] = React.useState<any>()
+  const mapContainer = useRef<HTMLDivElement | null>(null);
+  const [mapObject, setMapObject] = React.useState<maplibregl.Map | null>(null)
   const [shop, setShop] = React.useState<Pwamap.ShopData | undefined>(undefined)
-  const [ zLatLngString, setZLatLngString ] = React.useState<string>('');
+  const [zLatLngString, setZLatLngString] = React.useState<string>('');
+  // 川崎市
+  const [longitude] = useState(139.9528);
+  const [latitude] = useState(35.512);
+  const [zoom] = useState(10);
 
   const addMarkers = (mapObject: any, data: any) => {
-
     if (!mapObject || !data) {
       return
     }
 
     mapObject.on('render', () => {
-
       // nothing to do if shops exists.
       if (mapObject.getSource('shops')) {
         return
       }
 
-      hidePoiLayers(mapObject)
-
       const textColor = '#000000'
       const textHaloColor = '#FFFFFF'
 
-
       const geojson: any = toGeoJson(data)
-
       mapObject.addSource('shops', {
         type: 'geojson',
         data: geojson,
@@ -195,15 +190,17 @@ const Content = (props: Props) => {
       })
 
       setCluster(mapObject)
-
     });
-
   }
 
   React.useEffect(() => {
+    if (mapObject) {
+      mapObject.flyTo({center: [longitude, latitude], zoom: zoom});
+    }
+  }, [longitude, latitude, zoom])
 
+  React.useEffect(() => {
     addMarkers(mapObject, props.data)
-
   }, [mapObject, props.data])
 
   React.useEffect(() => {
@@ -212,48 +209,42 @@ const Content = (props: Props) => {
       hash.set('map', zLatLngString);
     }
     updateHash(hash);
-
   }, [ zLatLngString ]);
+
 
   React.useEffect(() => {
     // Only once reder the map.
-    if (!mapNode.current || mapObject) {
+    if (!mapContainer.current || mapObject) {
       return
     }
 
-    // @ts-ignore
-    const { geolonia } = window;
+    //const geojson: any = toGeoJson(props.data)
+    //const bounds: any = geojsonExtent(geojson)
 
-    const geojson = toGeoJson(props.data)
-    const bounds = geojsonExtent(geojson)
-
-    const map = new geolonia.Map({
-      container: mapNode.current,
-      style: 'geolonia/gsi',
-      bounds: bounds,
-      fitBoundsOptions: { padding: 50 },
+    const map: maplibregl.Map = new maplibregl.Map({
+      container: mapContainer.current,
+      style: 'https://tile.openstreetmap.jp/styles/osm-bright-ja/style.json', // 地図のスタイル
+      center: [longitude, latitude],  // 中心座標
+      zoom: zoom, // ズームレベル
+      pitch: 0, // 傾き
+      bearing: 0
     });
 
-    const hash = parseHash();
-    if (hash && hash.get('map')) {
-
-      const latLngString = hash.get('map') || '';
-      const zlatlng = latLngString.split('/');
-
-      const zoom = zlatlng[0]
-      const lat = zlatlng[1]
-      const lng = zlatlng[2]
-
-      map.flyTo({center: [lng, lat], zoom});
-
-    } else if (bounds) {
-
-      map.fitBounds(bounds, { padding: 50 })
-
-    }
+    // const hash = parseHash();
+    // if (hash && hash.get('map')) {
+    //   const latLngString = hash.get('map') || '';
+    //   const zlatlng = latLngString.split('/');
+    //
+    //   const zoom = Number(zlatlng[0])
+    //   const lat = Number(zlatlng[1])
+    //   const lng = Number(zlatlng[2])
+    //   map.flyTo({center: [lng, lat], zoom: zoom});
+    // } else if (bounds) {
+    //   map.fitBounds(bounds, { padding: 50 })
+    // }
 
     const onMapLoad = () => {
-      hidePoiLayers(map)
+      // hidePoiLayers(map)
       setMapObject(map)
 
       map.on('moveend', () => {
@@ -286,21 +277,15 @@ const Content = (props: Props) => {
       window.removeEventListener('orientationchange', orienteationchangeHandler)
       map.off('load', onMapLoad)
     }
-  }, [mapNode, mapObject, props.data])
+  }, [mapObject, props.data])
 
   const closeHandler = () => {
     setShop(undefined)
   }
 
   return (
-    <div style={CSS}>
-      <div
-        ref={mapNode}
-        style={CSS}
-        data-geolocate-control="on"
-        data-marker="off"
-        data-gesture-handling="off"
-      ></div>
+    <div className="map-wrap">
+      <div className="map-container" ref={mapContainer}></div>
       {shop ?
         <Shop shop={shop} close={closeHandler} />
         :
@@ -308,6 +293,6 @@ const Content = (props: Props) => {
       }
     </div>
   );
-};
+}
 
 export default Content;
