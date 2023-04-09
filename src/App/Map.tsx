@@ -10,7 +10,7 @@ import 'maplibre-gl-opacity/dist/maplibre-gl-opacity.css';
 // @ts-ignore
 //import geojsonExtent from '@mapbox/geojson-extent'
 import toGeoJson from './toGeoJson'
-import setCluster from './setCluster'
+//import setCluster from './setCluster'
 import Shop from './Shop'
 
 // Maker Icon images
@@ -83,9 +83,6 @@ const Content = (props: Props) => {
       if (mapObject.getSource('shops')) {
         return
       }
-
-      const textColor = '#000000'
-      const textHaloColor = '#FFFFFF'
 
       const geojson: any = toGeoJson(data)
       mapObject.addSource('shops', {
