@@ -3,6 +3,10 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import './Map.scss';
 
+// @ts-ignore　OpacityControlプラグインの読み込み
+import OpacityControl from 'maplibre-gl-opacity';
+import 'maplibre-gl-opacity/dist/maplibre-gl-opacity.css';
+
 // @ts-ignore
 //import geojsonExtent from '@mapbox/geojson-extent'
 import toGeoJson from './toGeoJson'
@@ -87,9 +91,9 @@ const Content = (props: Props) => {
       mapObject.addSource('shops', {
         type: 'geojson',
         data: geojson,
-        cluster: true,
-        clusterMaxZoom: 14,
-        clusterRadius: 25,
+        //cluster: true,
+        //clusterMaxZoom: 14,
+        //clusterRadius: 25,
       })
 
       geojson.features.forEach(function (feature: any) {
@@ -129,7 +133,16 @@ const Content = (props: Props) => {
             'layout': {
               'icon-image': image_id,
               "icon-allow-overlap": true,
-              "icon-size": 1.0
+              "icon-size": 1.0,
+              'text-field': "{スポット名}",
+              'text-font': ['Noto Sans Regular'],
+              'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+              'text-radial-offset': 1.7,
+              'text-justify': 'auto',
+              'text-size': 12,
+              'text-anchor': 'top',
+              'text-max-width': 12,
+              'text-allow-overlap': false,
             },
           });
 
@@ -149,47 +162,18 @@ const Content = (props: Props) => {
         }
       });
 
-      mapObject.addLayer({
-        id: 'shop-symbol',
-        type: 'symbol',
-        source: 'shops',
-        filter: ['all',
-          ['==', '$type', 'Point'],
-        ],
-        paint: {
-          'text-color': textColor,
-          'text-halo-color': textHaloColor,
-          'text-halo-width': 2,
+      //setCluster(mapObject)
+
+      // 背景地図・重ねるタイル地図のコントロール
+      const opacity = new OpacityControl({
+        baseLayers: {
+          'poi-senkyowari_yen': 'センキョ割実施店舗',
+          'poi-votebeforehand': '期日前投票所',
+          'poi-vote': '投票所',
+          'poi-bbs': 'ポスター掲示場設置場所',
         },
-        layout: {
-          'text-field': "{スポット名}",
-          'text-font': ['Noto Sans Regular'],
-          'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-          'text-radial-offset': 0.5,
-          'text-justify': 'auto',
-          'text-size': 12,
-          'text-anchor': 'top',
-          'text-max-width': 12,
-          'text-allow-overlap': false,
-        },
-      })
-
-      // shop-symbol
-      mapObject.on('mouseenter', 'shop-symbol', () => {
-        mapObject.getCanvas().style.cursor = 'pointer'
-      })
-
-      mapObject.on('mouseleave', 'shop-symbol', () => {
-        mapObject.getCanvas().style.cursor = ''
-      })
-
-      mapObject.on('click', 'shop-symbol', (event: any) => {
-        if (!event.features[0].properties.cluster) {
-          setShop(event.features[0].properties)
-        }
-      })
-
-      setCluster(mapObject)
+      });
+      mapObject.addControl(opacity, 'top-left');
     });
   }
 
