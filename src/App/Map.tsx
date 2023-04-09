@@ -4,7 +4,7 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import './Map.scss';
 
 // @ts-ignore
-import geojsonExtent from '@mapbox/geojson-extent'
+//import geojsonExtent from '@mapbox/geojson-extent'
 import toGeoJson from './toGeoJson'
 import setCluster from './setCluster'
 import Shop from './Shop'
@@ -28,7 +28,23 @@ type Props = {
   data: Pwamap.ShopData[];
 };
 
-let mapObject: maplibregl.Map;
+// const hidePoiLayers = (map: any) => {
+//
+//   const hideLayers = [
+//     'poi',
+//     'poi-primary',
+//     'poi-r0-r9',
+//     'poi-r10-r24',
+//     'poi-r25',
+//     'poi-bus',
+//     'poi-entrance',
+//   ]
+//
+//   for (let i = 0; i < hideLayers.length; i++) {
+//     const layerId = hideLayers[i];
+//     map.setLayoutProperty(layerId, 'visibility', 'none')
+//   }
+// }
 
 const parseHash = (url?: Location | URL) => {
   const qstr = (url || window.location).hash.substring(2);
@@ -37,45 +53,37 @@ const parseHash = (url?: Location | URL) => {
 };
 
 const updateHash = (q: URLSearchParams) => {
-
   const hash = q.toString();
   if (hash) {
     window.location.hash = `#/?${q.toString().replace(/%2F/g, '/')}`;
   }
 };
 
-
 const Content = (props: Props) => {
   const mapContainer = useRef<HTMLDivElement | null>(null);
-
-  const [lng] = useState(139.659963);
-  const [lat] = useState(35.576655);
+  const [mapObject, setMapObject] = React.useState<maplibregl.Map | null>(null)
+  const [shop, setShop] = React.useState<Pwamap.ShopData | undefined>(undefined)
+  const [zLatLngString, setZLatLngString] = React.useState<string>('');
+  // 川崎市
+  const [longitude] = useState(139.9528);
+  const [latitude] = useState(35.512);
   const [zoom] = useState(10);
 
-  const [shop, setShop] = React.useState<Pwamap.ShopData | undefined>(undefined)
-  const [ zLatLngString, setZLatLngString ] = React.useState<string>('');
-
   const addMarkers = (mapObject: any, data: any) => {
-
     if (!mapObject || !data) {
       return
     }
 
     mapObject.on('render', () => {
-
       // nothing to do if shops exists.
       if (mapObject.getSource('shops')) {
         return
       }
 
-      //hidePoiLayers(mapObject)
-
       const textColor = '#000000'
       const textHaloColor = '#FFFFFF'
 
-
       const geojson: any = toGeoJson(data)
-
       mapObject.addSource('shops', {
         type: 'geojson',
         data: geojson,
@@ -182,82 +190,67 @@ const Content = (props: Props) => {
       })
 
       setCluster(mapObject)
-
     });
-
   }
 
   React.useEffect(() => {
-
-    addMarkers(mapObject, props.data)
-
-  }, [mapObject, props.data])
-
-  useEffect(() => {
-    if (!mapObject) {
-      if (!mapContainer.current) return;
-
-      mapObject = new maplibregl.Map({
-        container: mapContainer.current,
-        style: 'https://tile.openstreetmap.jp/styles/osm-bright-ja/style.json', // 地図のスタイル
-        center: [lng, lat],  // 中心座標
-        zoom: zoom, // ズームレベル
-        pitch: 0, // 傾き
-        bearing: 0
-      });
+    if (mapObject) {
+      mapObject.flyTo({center: [longitude, latitude], zoom: zoom});
     }
+  }, [longitude, latitude, zoom])
 
-    // @ts-ignore
-    //mapObject.addControl(new maplibregl.NavigationControl());
+  React.useEffect(() => {
+    addMarkers(mapObject, props.data)
   }, [mapObject, props.data])
 
   React.useEffect(() => {
+    const hash = parseHash();
+    if (zLatLngString) {
+      hash.set('map', zLatLngString);
+    }
+    updateHash(hash);
+  }, [ zLatLngString ]);
+
+
+  React.useEffect(() => {
     // Only once reder the map.
-    if (mapObject) {
+    if (!mapContainer.current || mapObject) {
       return
     }
 
-    // @ts-ignore
-    //const { geolonia } = window;
+    //const geojson: any = toGeoJson(props.data)
+    //const bounds: any = geojsonExtent(geojson)
 
-    const geojson = toGeoJson(props.data)
-    const bounds = geojsonExtent(geojson)
-
-    /*
-    const map = new geolonia.Map({
-      container: mapNode.current,
-      style: 'geolonia/gsi',
-      bounds: bounds,
-      fitBoundsOptions: { padding: 50 },
+    const map: maplibregl.Map = new maplibregl.Map({
+      container: mapContainer.current,
+      style: 'https://tile.openstreetmap.jp/styles/osm-bright-ja/style.json', // 地図のスタイル
+      center: [longitude, latitude],  // 中心座標
+      zoom: zoom, // ズームレベル
+      pitch: 0, // 傾き
+      bearing: 0
     });
-    */
 
-    const hash = parseHash();
-    if (hash && hash.get('map')) {
+    // const hash = parseHash();
+    // if (hash && hash.get('map')) {
+    //   const latLngString = hash.get('map') || '';
+    //   const zlatlng = latLngString.split('/');
+    //
+    //   const zoom = Number(zlatlng[0])
+    //   const lat = Number(zlatlng[1])
+    //   const lng = Number(zlatlng[2])
+    //   map.flyTo({center: [lng, lat], zoom: zoom});
+    // } else if (bounds) {
+    //   map.fitBounds(bounds, { padding: 50 })
+    // }
 
-      const latLngString = hash.get('map') || '';
-      const zlatlng = latLngString.split('/');
+    const onMapLoad = () => {
+      // hidePoiLayers(map)
+      setMapObject(map)
 
-      const zoom = zlatlng[0]
-      const lat = zlatlng[1]
-      const lng = zlatlng[2]
-
-      // mapObject.flyTo({center: [lng, lat], zoom});
-
-    } else if (bounds) {
-
-      // mapObject.fitBounds(bounds, { padding: 50 })
-
-    }
-
-/*    const onMapLoad = () => {
-      //hidePoiLayers(map)
-      //setMapObject(map)
-
-      mapObject.on('moveend', () => {
+      map.on('moveend', () => {
         // see: https://github.com/maplibre/maplibre-gl-js/blob/ba7bfbc846910c5ae848aaeebe4bde6833fc9cdc/src/ui/hash.js#L59
-        const center = mapObject.getCenter(),
-          rawZoom = mapObject.getZoom(),
+        const center = map.getCenter(),
+          rawZoom = map.getZoom(),
           zoom = Math.round(rawZoom * 100) / 100,
           // derived from equation: 512px * 2^z / 360 / 10^d < 0.5px
           precision = Math.ceil((zoom * Math.LN2 + Math.log(512 / 360 / 0.5)) / Math.LN10),
@@ -268,21 +261,21 @@ const Content = (props: Props) => {
 
         setZLatLngString(`${zStr}/${lat}/${lng}`);
       });
-    }*/
+    }
 
     const orienteationchangeHandler = () => {
-      mapObject.resize()
+      map.resize()
     }
 
     // attach
-    //mapObject.on('load', onMapLoad)
+    map.on('load', onMapLoad)
 
     window.addEventListener('orientationchange', orienteationchangeHandler)
 
     return () => {
       // detach to prevent memory leak
       window.removeEventListener('orientationchange', orienteationchangeHandler)
-      //mapObject.off('load', onMapLoad)
+      map.off('load', onMapLoad)
     }
   }, [mapObject, props.data])
 
