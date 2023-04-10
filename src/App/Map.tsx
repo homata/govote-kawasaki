@@ -73,106 +73,106 @@ const Content = (props: Props) => {
   const [latitude] = useState(35.5542);
   const [zoom] = useState(11);
 
-  const addMarkers = (mapObject: any, data: any) => {
-    if (!mapObject || !data) {
-      return
-    }
-
-    mapObject.on('render', () => {
-      // nothing to do if shops exists.
-      if (mapObject.getSource('shops')) {
-        return
-      }
-
-      const geojson: any = toGeoJson(data)
-      mapObject.addSource('shops', {
-        type: 'geojson',
-        data: geojson,
-        //cluster: true,
-        //clusterMaxZoom: 14,
-        //clusterRadius: 25,
-      })
-
-      geojson.features.forEach(function (feature: any) {
-        let category:string = feature.properties['カテゴリ'];
-
-        let layer_id: string = "";
-        let marker_object: any = null;
-
-        if (category === "センキョ割実施店舗") {
-          layer_id = 'poi-senkyowari_yen';
-          marker_object = marker_senkyowari_yen;
-        } else if (category === "期日前投票所") {
-          layer_id = 'poi-votebeforehand';
-          marker_object = marker_votebeforehand
-        } else if (category === "投票所") {
-          layer_id = 'poi-vote';
-          marker_object = marker_vote;
-        } else if (category === "ポスター掲示場設置場所") {
-          layer_id = 'poi-bbs';
-          marker_object = marker_bbs;
-        } else {
-          layer_id = "";
-          marker_object = null;
-        }
-        // Add a layer for this symbol type if it hasn't been added already.
-        if (!mapObject.getLayer(layer_id)) {
-          // アイコン画像設定
-          let image_id: string = "img_" + layer_id;
-          mapObject.addImage(image_id, marker_object);
-
-          // スタイル設定
-          mapObject.addLayer({
-            'id': layer_id,
-            'type': 'symbol',
-            source: 'shops',
-            filter: ['==', "カテゴリ", category],
-            'layout': {
-              'icon-image': image_id,
-              "icon-allow-overlap": true,
-              "icon-size": 1.0,
-              'text-field': "{スポット名}",
-              'text-font': ['Noto Sans Regular'],
-              'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
-              'text-radial-offset': 1.7,
-              'text-justify': 'auto',
-              'text-size': 12,
-              'text-anchor': 'top',
-              'text-max-width': 12,
-              'text-allow-overlap': false,
-            },
-          });
-
-          mapObject.on('mouseenter', layer_id, () => {
-            mapObject.getCanvas().style.cursor = 'pointer'
-          })
-
-          mapObject.on('mouseleave', layer_id, () => {
-            mapObject.getCanvas().style.cursor = ''
-          })
-
-          mapObject.on('click', layer_id, (event: any) => {
-            if (!event.features[0].properties.cluster) {
-              setShop(event.features[0].properties)
-            }
-          })
-        }
-      });
-
-      //setCluster(mapObject)
-
-      // 背景地図・重ねるタイル地図のコントロール
-      // const opacity = new OpacityControl({
-      //   baseLayers: {
-      //     'poi-senkyowari_yen': 'センキョ割実施店舗',
-      //     'poi-votebeforehand': '期日前投票所',
-      //     'poi-vote': '投票所',
-      //     'poi-bbs': 'ポスター掲示場設置場所',
-      //   },
-      // });
-      // mapObject.addControl(opacity, 'top-left');
-    });
-  }
+  // const addMarkers = (mapObject: any, data: any) => {
+  //   if (!mapObject || !data) {
+  //     return
+  //   }
+  //
+  //   mapObject.on('render', () => {
+  //     // nothing to do if shops exists.
+  //     if (mapObject.getSource('shops')) {
+  //       return
+  //     }
+  //
+  //     const geojson: any = toGeoJson(data)
+  //     mapObject.addSource('shops', {
+  //       type: 'geojson',
+  //       data: geojson,
+  //       //cluster: true,
+  //       //clusterMaxZoom: 14,
+  //       //clusterRadius: 25,
+  //     })
+  //
+  //     geojson.features.forEach(function (feature: any) {
+  //       let category:string = feature.properties['カテゴリ'];
+  //
+  //       let layer_id: string = "";
+  //       let marker_object: any = null;
+  //
+  //       if (category === "センキョ割実施店舗") {
+  //         layer_id = 'poi-senkyowari_yen';
+  //         marker_object = marker_senkyowari_yen;
+  //       } else if (category === "期日前投票所") {
+  //         layer_id = 'poi-votebeforehand';
+  //         marker_object = marker_votebeforehand
+  //       } else if (category === "投票所") {
+  //         layer_id = 'poi-vote';
+  //         marker_object = marker_vote;
+  //       } else if (category === "ポスター掲示場設置場所") {
+  //         layer_id = 'poi-bbs';
+  //         marker_object = marker_bbs;
+  //       } else {
+  //         layer_id = "";
+  //         marker_object = null;
+  //       }
+  //       // Add a layer for this symbol type if it hasn't been added already.
+  //       if (!mapObject.getLayer(layer_id)) {
+  //         // アイコン画像設定
+  //         let image_id: string = "img_" + layer_id;
+  //         mapObject.addImage(image_id, marker_object);
+  //
+  //         // スタイル設定
+  //         mapObject.addLayer({
+  //           'id': layer_id,
+  //           'type': 'symbol',
+  //           source: 'shops',
+  //           filter: ['==', "カテゴリ", category],
+  //           'layout': {
+  //             'icon-image': image_id,
+  //             "icon-allow-overlap": true,
+  //             "icon-size": 1.0,
+  //             'text-field': "{スポット名}",
+  //             'text-font': ['Noto Sans Regular'],
+  //             'text-variable-anchor': ['top', 'bottom', 'left', 'right'],
+  //             'text-radial-offset': 1.7,
+  //             'text-justify': 'auto',
+  //             'text-size': 12,
+  //             'text-anchor': 'top',
+  //             'text-max-width': 12,
+  //             'text-allow-overlap': false,
+  //           },
+  //         });
+  //
+  //         mapObject.on('mouseenter', layer_id, () => {
+  //           mapObject.getCanvas().style.cursor = 'pointer'
+  //         })
+  //
+  //         mapObject.on('mouseleave', layer_id, () => {
+  //           mapObject.getCanvas().style.cursor = ''
+  //         })
+  //
+  //         mapObject.on('click', layer_id, (event: any) => {
+  //           if (!event.features[0].properties.cluster) {
+  //             setShop(event.features[0].properties)
+  //           }
+  //         })
+  //       }
+  //     });
+  //
+  //     //setCluster(mapObject)
+  //
+  //     // 背景地図・重ねるタイル地図のコントロール
+  //     // const opacity = new OpacityControl({
+  //     //   baseLayers: {
+  //     //     'poi-senkyowari_yen': 'センキョ割実施店舗',
+  //     //     'poi-votebeforehand': '期日前投票所',
+  //     //     'poi-vote': '投票所',
+  //     //     'poi-bbs': 'ポスター掲示場設置場所',
+  //     //   },
+  //     // });
+  //     // mapObject.addControl(opacity, 'top-left');
+  //   });
+  // }
 
   React.useEffect(() => {
     if (mapObject) {
@@ -181,7 +181,80 @@ const Content = (props: Props) => {
   }, [mapObject, longitude, latitude, zoom])
 
   React.useEffect(() => {
-    //addMarkers(mapObject, props.data)
+    if (!mapObject || !props.data) {
+      return
+    }
+    const geojson: any = toGeoJson(props.data)
+    mapObject.addSource('shops', {
+      type: 'geojson',
+      data: geojson,
+    })
+
+    geojson.features.forEach(function (feature: any) {
+      let category:string = feature.properties['カテゴリ'];
+
+      let layer_id: string = "";
+      let marker_object: any = null;
+
+      if (category == "センキョ割実施店舗") {
+        layer_id = 'poi-senkyowari_yen';
+        marker_object = marker_senkyowari_yen;
+      } else if (category == "期日前投票所") {
+        layer_id = 'poi-votebeforehand';
+        marker_object = marker_votebeforehand
+      } else if (category == "投票所") {
+        layer_id = 'poi-vote';
+        marker_object = marker_vote;
+      } else if (category == "ポスター掲示場設置場所") {
+        layer_id = 'poi-bbs';
+        marker_object = marker_bbs;
+      } else {
+        layer_id = "";
+        marker_object = null;
+      }
+      if (!mapObject.getLayer(layer_id)) {
+        // アイコン画像設定
+        let image_id: string = "img_" + layer_id;
+        mapObject.addImage(image_id, marker_object);
+        mapObject.addLayer({
+          'id': layer_id,
+          'type': 'symbol',
+          source: 'shops',
+          filter: ['==', "カテゴリ", category],
+          'layout': {
+            'icon-image': image_id,
+            "icon-allow-overlap": true,
+            "icon-size": 1.0,
+          },
+        });
+      }
+    });
+
+    // OverLayer
+    const mapOverLayer = {
+      'poi-senkyowari_yen': 'センキョ割実施店舗',
+      'poi-votebeforehand': '期日前投票所',
+      'poi-vote': '投票所',
+      'poi-bbs': 'ポスター掲示場設置場所',
+    };
+
+    // OpacityControl
+    let Opacity = new OpacityControl({
+      overLayers: mapOverLayer,
+    });
+    mapObject.addControl(Opacity, 'top-right');
+
+    // NavigationControl
+    // @ts-ignore
+    mapObject.addControl(new maplibregl.NavigationControl(), 'top-left');
+
+    const element: HTMLElement | null = document.getElementById('poi-senkyowari_yen');
+    // @ts-ignore
+    //element.addEventListener('change', (event) => {
+      // @ts-ignore
+    element.checked = true;
+    //});
+
   }, [mapObject, props.data])
 
   React.useEffect(() => {
@@ -216,19 +289,22 @@ const Content = (props: Props) => {
       style: {
         version: 8,
         sources: {
-          m_mono: {
+          o_std: {
             type: 'raster',
-            tiles: ['https://tile.mierune.co.jp/mierune_mono/{z}/{x}/{y}.png'],
-            tileSize: 256,
-            attribution:
-              "Maptiles by <a href='http://mierune.co.jp/' target='_blank'>MIERUNE</a>, under CC BY. Data by <a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> contributors, under ODbL.",
+            tiles: [
+              'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+              'https://b.tile.openstreetmap.org/{z}/{x}/{y}.png',
+            ],
+            tileSize: 256
+            //attribution:
+            //  "Maptiles by <a href='http://mierune.co.jp/' target='_blank'>MIERUNE</a>, under CC BY. Data by <a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> contributors, under ODbL.",
           },
         },
         layers: [
           {
-            id: 'm_mono',
+            id: 'o_std',
             type: 'raster',
-            source: 'm_mono',
+            source: 'o_std',
             minzoom: 0,
             maxzoom: 18,
           },
@@ -293,90 +369,7 @@ const Content = (props: Props) => {
     // attach
     //map.on('load', onMapLoad)
     map.on('load', function () {
-      // MIERUNE Color
-      map.addSource('m_color', {
-        type: 'raster',
-        tiles: ['https://tile.mierune.co.jp/mierune/{z}/{x}/{y}.png'],
-        tileSize: 256,
-      });
-      map.addLayer({
-        id: 'm_color',
-        type: 'raster',
-        source: 'm_color',
-        minzoom: 0,
-        maxzoom: 18,
-      });
-
-      // OpenStreetMap
-      map.addSource('o_std', {
-        type: 'raster',
-        tiles: [
-          'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
-          'https://b.tile.openstreetmap.org/{z}/{x}/{y}.png',
-        ],
-        tileSize: 256,
-      });
-      map.addLayer({
-        id: 'o_std',
-        type: 'raster',
-        source: 'o_std',
-        minzoom: 0,
-        maxzoom: 18,
-      });
-
-      // GSI Pale
-      map.addSource('t_pale', {
-        type: 'raster',
-        tiles: ['https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png'],
-        tileSize: 256,
-      });
-      map.addLayer({
-        id: 't_pale',
-        type: 'raster',
-        source: 't_pale',
-        minzoom: 0,
-        maxzoom: 18,
-      });
-
-      // GSI Ort
-      map.addSource('t_ort', {
-        type: 'raster',
-        tiles: ['https://cyberjapandata.gsi.go.jp/xyz/ort/{z}/{x}/{y}.jpg'],
-        tileSize: 256,
-      });
-      map.addLayer({
-        id: 't_ort',
-        type: 'raster',
-        source: 't_ort',
-        minzoom: 0,
-        maxzoom: 18,
-      });
-
-      // BaseLayer
-      const mapBaseLayer = {
-        m_mono: 'MIERUNE Mono',
-        m_color: 'MIERUNE Color',
-      };
-
-      // OverLayer
-      const mapOverLayer = {
-        o_std: 'OpenStreetMap',
-        t_pale: 'GSI Pale',
-        t_ort: 'GSI Ort',
-      };
-
-      // OpacityControl
-      let Opacity = new OpacityControl({
-        baseLayers: mapBaseLayer,
-        overLayers: mapOverLayer,
-        opacityControl: true,
-      });
-      map.addControl(Opacity, 'top-right');
-
-      // NavigationControl
-      // @ts-ignore
-      let nc = new maplibregl.NavigationControl();
-      map.addControl(nc, 'top-left');
+      setMapObject(map);
     });
     window.addEventListener('orientationchange', orienteationchangeHandler)
 
