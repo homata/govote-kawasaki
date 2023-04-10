@@ -162,15 +162,15 @@ const Content = (props: Props) => {
       //setCluster(mapObject)
 
       // 背景地図・重ねるタイル地図のコントロール
-      const opacity = new OpacityControl({
-        baseLayers: {
-          'poi-senkyowari_yen': 'センキョ割実施店舗',
-          'poi-votebeforehand': '期日前投票所',
-          'poi-vote': '投票所',
-          'poi-bbs': 'ポスター掲示場設置場所',
-        },
-      });
-      mapObject.addControl(opacity, 'top-left');
+      // const opacity = new OpacityControl({
+      //   baseLayers: {
+      //     'poi-senkyowari_yen': 'センキョ割実施店舗',
+      //     'poi-votebeforehand': '期日前投票所',
+      //     'poi-vote': '投票所',
+      //     'poi-bbs': 'ポスター掲示場設置場所',
+      //   },
+      // });
+      // mapObject.addControl(opacity, 'top-left');
     });
   }
 
@@ -181,7 +181,7 @@ const Content = (props: Props) => {
   }, [mapObject, longitude, latitude, zoom])
 
   React.useEffect(() => {
-    addMarkers(mapObject, props.data)
+    //addMarkers(mapObject, props.data)
   }, [mapObject, props.data])
 
   React.useEffect(() => {
@@ -198,31 +198,57 @@ const Content = (props: Props) => {
     if (!mapContainer.current || mapObject) {
       return
     }
-
+    // const map: maplibregl.Map = new maplibregl.Map({
+    //   container: mapContainer.current,
+    //   style: 'https://tile.openstreetmap.jp/styles/osm-bright-ja/style.json', // 地図のスタイル
+    //   center: [longitude, latitude],  // 中心座標
+    //   zoom: zoom, // ズームレベル
+    //   pitch: 0, // 傾き
+    //   bearing: 0,
+    //   //attributionControl: false // 既存Attributionを非表示
+    // });
     //const geojson: any = toGeoJson(props.data)
     //const bounds: any = geojsonExtent(geojson)
 
-    const map: maplibregl.Map = new maplibregl.Map({
+
+    const map = new maplibregl.Map({
       container: mapContainer.current,
-      style: 'https://tile.openstreetmap.jp/styles/osm-bright-ja/style.json', // 地図のスタイル
-      center: [longitude, latitude],  // 中心座標
-      zoom: zoom, // ズームレベル
-      pitch: 0, // 傾き
-      bearing: 0,
-      attributionControl: false // 既存Attributionを非表示
+      style: {
+        version: 8,
+        sources: {
+          m_mono: {
+            type: 'raster',
+            tiles: ['https://tile.mierune.co.jp/mierune_mono/{z}/{x}/{y}.png'],
+            tileSize: 256,
+            attribution:
+              "Maptiles by <a href='http://mierune.co.jp/' target='_blank'>MIERUNE</a>, under CC BY. Data by <a href='http://osm.org/copyright' target='_blank'>OpenStreetMap</a> contributors, under ODbL.",
+          },
+        },
+        layers: [
+          {
+            id: 'm_mono',
+            type: 'raster',
+            source: 'm_mono',
+            minzoom: 0,
+            maxzoom: 18,
+          },
+        ],
+      },
+      center: [139.767, 35.681],
+      zoom: 10,
     });
 
     // コントロールの追加
     // Attributionを折りたたみ表示
-    map.addControl(new maplibregl.AttributionControl({compact: true}), 'top-right');
+    //map.addControl(new maplibregl.AttributionControl({compact: true}), 'top-right');
     // @ts-ignore　スケール
-    map.addControl(new maplibregl.ScaleControl(), 'top-left');
+    //map.addControl(new maplibregl.ScaleControl(), 'top-left');
     // @ts-ignore　拡大・縮小　
-    map.addControl(new maplibregl.NavigationControl(), 'top-right');
+    //map.addControl(new maplibregl.NavigationControl(), 'top-right');
     // 現在位置検索
-    map.addControl(new maplibregl.GeolocateControl({positionOptions: {enableHighAccuracy: true},trackUserLocation: true}), 'top-right');
+    //map.addControl(new maplibregl.GeolocateControl({positionOptions: {enableHighAccuracy: true},trackUserLocation: true}), 'top-right');
     // @ts-ignore　フルスクリーン
-    map.addControl(new maplibregl.FullscreenControl({container: document.querySelector('body')}));
+    //map.addControl(new maplibregl.FullscreenControl({container: document.querySelector('body')}));
     // タイル枠
     //map.showTileBoundaries = true;
 
@@ -240,39 +266,124 @@ const Content = (props: Props) => {
     //   map.fitBounds(bounds, { padding: 50 })
     // }
 
-    const onMapLoad = () => {
-      // hidePoiLayers(map)
-      setMapObject(map)
-
-      map.on('moveend', () => {
-        // see: https://github.com/maplibre/maplibre-gl-js/blob/ba7bfbc846910c5ae848aaeebe4bde6833fc9cdc/src/ui/hash.js#L59
-        const center = map.getCenter(),
-          rawZoom = map.getZoom(),
-          zoom = Math.round(rawZoom * 100) / 100,
-          // derived from equation: 512px * 2^z / 360 / 10^d < 0.5px
-          precision = Math.ceil((zoom * Math.LN2 + Math.log(512 / 360 / 0.5)) / Math.LN10),
-          m = Math.pow(10, precision),
-          lng = Math.round(center.lng * m) / m,
-          lat = Math.round(center.lat * m) / m,
-          zStr = Math.ceil(zoom);
-
-        setZLatLngString(`${zStr}/${lat}/${lng}`);
-      });
-    }
+    // const onMapLoad = () => {
+    //   // hidePoiLayers(map)
+    //   setMapObject(map)
+    //
+    //   map.on('moveend', () => {
+    //     // see: https://github.com/maplibre/maplibre-gl-js/blob/ba7bfbc846910c5ae848aaeebe4bde6833fc9cdc/src/ui/hash.js#L59
+    //     const center = map.getCenter(),
+    //       rawZoom = map.getZoom(),
+    //       zoom = Math.round(rawZoom * 100) / 100,
+    //       // derived from equation: 512px * 2^z / 360 / 10^d < 0.5px
+    //       precision = Math.ceil((zoom * Math.LN2 + Math.log(512 / 360 / 0.5)) / Math.LN10),
+    //       m = Math.pow(10, precision),
+    //       lng = Math.round(center.lng * m) / m,
+    //       lat = Math.round(center.lat * m) / m,
+    //       zStr = Math.ceil(zoom);
+    //
+    //     setZLatLngString(`${zStr}/${lat}/${lng}`);
+    //   });
+    // }
 
     const orienteationchangeHandler = () => {
-      map.resize()
+      //map.resize()
     }
 
     // attach
-    map.on('load', onMapLoad)
+    //map.on('load', onMapLoad)
+    map.on('load', function () {
+      // MIERUNE Color
+      map.addSource('m_color', {
+        type: 'raster',
+        tiles: ['https://tile.mierune.co.jp/mierune/{z}/{x}/{y}.png'],
+        tileSize: 256,
+      });
+      map.addLayer({
+        id: 'm_color',
+        type: 'raster',
+        source: 'm_color',
+        minzoom: 0,
+        maxzoom: 18,
+      });
 
+      // OpenStreetMap
+      map.addSource('o_std', {
+        type: 'raster',
+        tiles: [
+          'https://a.tile.openstreetmap.org/{z}/{x}/{y}.png',
+          'https://b.tile.openstreetmap.org/{z}/{x}/{y}.png',
+        ],
+        tileSize: 256,
+      });
+      map.addLayer({
+        id: 'o_std',
+        type: 'raster',
+        source: 'o_std',
+        minzoom: 0,
+        maxzoom: 18,
+      });
+
+      // GSI Pale
+      map.addSource('t_pale', {
+        type: 'raster',
+        tiles: ['https://cyberjapandata.gsi.go.jp/xyz/pale/{z}/{x}/{y}.png'],
+        tileSize: 256,
+      });
+      map.addLayer({
+        id: 't_pale',
+        type: 'raster',
+        source: 't_pale',
+        minzoom: 0,
+        maxzoom: 18,
+      });
+
+      // GSI Ort
+      map.addSource('t_ort', {
+        type: 'raster',
+        tiles: ['https://cyberjapandata.gsi.go.jp/xyz/ort/{z}/{x}/{y}.jpg'],
+        tileSize: 256,
+      });
+      map.addLayer({
+        id: 't_ort',
+        type: 'raster',
+        source: 't_ort',
+        minzoom: 0,
+        maxzoom: 18,
+      });
+
+      // BaseLayer
+      const mapBaseLayer = {
+        m_mono: 'MIERUNE Mono',
+        m_color: 'MIERUNE Color',
+      };
+
+      // OverLayer
+      const mapOverLayer = {
+        o_std: 'OpenStreetMap',
+        t_pale: 'GSI Pale',
+        t_ort: 'GSI Ort',
+      };
+
+      // OpacityControl
+      let Opacity = new OpacityControl({
+        baseLayers: mapBaseLayer,
+        overLayers: mapOverLayer,
+        opacityControl: true,
+      });
+      map.addControl(Opacity, 'top-right');
+
+      // NavigationControl
+      // @ts-ignore
+      let nc = new maplibregl.NavigationControl();
+      map.addControl(nc, 'top-left');
+    });
     window.addEventListener('orientationchange', orienteationchangeHandler)
 
     return () => {
       // detach to prevent memory leak
       window.removeEventListener('orientationchange', orienteationchangeHandler)
-      map.off('load', onMapLoad)
+      //map.off('load', onMapLoad)
     }
   }, [mapObject, props.data, longitude, latitude, zoom])
 

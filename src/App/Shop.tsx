@@ -4,17 +4,6 @@ import './Shop.scss'
 import { AiOutlineClose } from 'react-icons/ai'
 import { Link } from "react-router-dom";
 import { makeDistanceLabelText } from "./distance-label";
-import Map, {
-  Marker,
-  // Popup,
-  NavigationControl,
-  // FullscreenControl,
-  // ScaleControl,
-  GeolocateControl
-} from 'react-map-gl';
-
-import maplibregl from 'maplibre-gl';
-import 'maplibre-gl/dist/maplibre-gl.css';
 
 type Props = {
   shop: Pwamap.ShopData;
@@ -82,20 +71,6 @@ const Content = (props: Props) => {
 
           <p style={{margin: "24px 0", wordBreak: "break-all"}}>住所：{toBreakLine(content)}</p>
 
-          <Map
-            initialViewState={{
-              longitude: longitude,
-              latitude: latitude,
-              zoom: 16,
-            }}
-            mapLib={maplibregl}
-            style={{width: '100%', height: '300px', marginTop: "24px"}}
-            mapStyle="https://tile.openstreetmap.jp/styles/osm-bright-ja/style.json"
-          >
-            <Marker longitude={longitude} latitude={latitude} anchor="bottom" ></Marker>
-            <GeolocateControl position="top-left" />
-            <NavigationControl position="top-left" />
-          </Map>
 
           <p><a className="small" href={`http://maps.apple.com/?q=${latitude},${longitude}`}>スポットまでの道順</a></p>
 
