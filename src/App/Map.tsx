@@ -4,8 +4,8 @@ import 'maplibre-gl/dist/maplibre-gl.css';
 import './Map.scss';
 
 // @ts-ignore　OpacityControlプラグインの読み込み
-//import OpacityControl from 'maplibre-gl-opacity';
-//import 'maplibre-gl-opacity/dist/maplibre-gl-opacity.css';
+import OpacityControl from 'maplibre-gl-opacity';
+import 'maplibre-gl-opacity/dist/maplibre-gl-opacity.css';
 
 // @ts-ignore
 //import geojsonExtent from '@mapbox/geojson-extent'
@@ -162,15 +162,15 @@ const Content = (props: Props) => {
       //setCluster(mapObject)
 
       // 背景地図・重ねるタイル地図のコントロール
-      // const opacity = new OpacityControl({
-      //   baseLayers: {
-      //     'poi-senkyowari_yen': 'センキョ割実施店舗',
-      //     'poi-votebeforehand': '期日前投票所',
-      //     'poi-vote': '投票所',
-      //     'poi-bbs': 'ポスター掲示場設置場所',
-      //   },
-      // });
-      // mapObject.addControl(opacity, 'top-left');
+      const opacity = new OpacityControl({
+        baseLayers: {
+          'poi-senkyowari_yen': 'センキョ割実施店舗',
+          'poi-votebeforehand': '期日前投票所',
+          'poi-vote': '投票所',
+          'poi-bbs': 'ポスター掲示場設置場所',
+        },
+      });
+      mapObject.addControl(opacity, 'top-left');
     });
   }
 

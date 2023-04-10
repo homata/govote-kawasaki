@@ -17,7 +17,6 @@
     "@types/react-dom": "^17.0.14",
     "chalk": "^5.0.1",
     "icon-gen": "^3.0.0",
-    "mapbox-gl": "^2.13.0",
     "maplibre-gl": "^2.4.0",
     "maplibre-gl-opacity": "^1.4.0",
     "next-qrcode": "^2.0.0",
