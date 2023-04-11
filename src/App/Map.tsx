@@ -197,16 +197,16 @@ const Content = (props: Props) => {
       let marker_object: any = null;
 
       if (category == "センキョ割実施店舗") {
-        layer_id = 'poi-senkyowari_yen';
+        layer_id = 'aerialway';
         marker_object = marker_senkyowari_yen;
       } else if (category == "期日前投票所") {
-        layer_id = 'poi-votebeforehand';
+        layer_id = 'airfield';
         marker_object = marker_votebeforehand
       } else if (category == "投票所") {
-        layer_id = 'poi-vote';
+        layer_id = 'airport';
         marker_object = marker_vote;
       } else if (category == "ポスター掲示場設置場所") {
-        layer_id = 'poi-bbs';
+        layer_id = 'alcohol_shop';
         marker_object = marker_bbs;
       } else {
         layer_id = "";
@@ -214,21 +214,24 @@ const Content = (props: Props) => {
       }
       if (!mapObject.getLayer(layer_id)) {
         // アイコン画像設定
-        let image_id: string = "img_" + layer_id;
-        mapObject.addImage(image_id, marker_object);
         mapObject.addLayer({
           'id': layer_id,
-          'type': 'symbol',
+          'type': 'circle',
           source: 'shops',
           filter: ['==', "カテゴリ", category],
-          'layout': {
-            'icon-image': image_id,
-            "icon-allow-overlap": true,
-            "icon-size": 1.0,
+          layout: {},
+          'paint': {
+            'circle-color': "#FF0000",
+            'circle-radius': 10
           },
         });
       }
     });
+
+    // BaseLayer
+    const mapBaseLayer = {
+      o_std: 'OpenStreetMap',
+    };
 
     // OverLayer
     const mapOverLayer = {
@@ -240,19 +243,20 @@ const Content = (props: Props) => {
 
     // OpacityControl
     let Opacity = new OpacityControl({
+      baseLayers: mapBaseLayer,
       overLayers: mapOverLayer,
+      opacityControl: true,
     });
     mapObject.addControl(Opacity, 'top-right');
 
-    // NavigationControl
     // @ts-ignore
     mapObject.addControl(new maplibregl.NavigationControl(), 'top-left');
 
-    const element: HTMLElement | null = document.getElementById('poi-senkyowari_yen');
+    //const element: HTMLElement | null = document.getElementById('poi-senkyowari_yen');
     // @ts-ignore
     //element.addEventListener('change', (event) => {
-      // @ts-ignore
-    element.checked = true;
+    // @ts-ignore
+    //element.checked = true;
     //});
 
   }, [mapObject, props.data])
